@@ -1,0 +1,524 @@
+{
+  "name": "Redactor_Negocios",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1024,
+        0
+      ],
+      "id": "e189b7e3-1101-451e-b202-a8a344b3304b",
+      "name": "LLamada desde Workflow"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU",
+          "mode": "list",
+          "cachedResultName": "Buscador_Negocios",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Prospectos_Murcia",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Estado",
+              "lookupValue": "Pendiente"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -784,
+        0
+      ],
+      "id": "246c577d-622d-4bbf-ae60-174e9682c6d0",
+      "name": "Obtener Negocios",
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": 20,
+        "keep": "lastItems"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        0
+      ],
+      "id": "96449548-3be8-475b-9cd0-3fda8d70ccda",
+      "name": "Limite"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -304,
+        0
+      ],
+      "id": "1c473bda-16cf-4505-996e-6d73a246e703",
+      "name": "Bucle"
+    },
+    {
+      "parameters": {
+        "chatId": "6563968635",
+        "text": "*Correos Enviados 🚀*",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -32,
+        -128
+      ],
+      "id": "57e0d0f0-2cfd-46f4-9e04-1f1be38f3f2e",
+      "name": "Confirmacion",
+      "webhookId": "39470a84-9207-43fe-a5da-a2802cfc3913",
+      "executeOnce": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "sYXmQach0fDdJf2T",
+          "name": "Guillermo_Personal_LinkedIn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=Eres Guillermo García, Consultor de Negocio experto en Hostelería.\nTu objetivo es iniciar una conversación real mediante un email frío.\n\n──────────────────────────\n1. REGLAS DE ORO\n──────────────────────────\n- Tu tono es de \"contacto guardado en la agenda\": Breve, directo, sin florituras.\n- NO actúes como un robot de marketing. Habla como una persona normal escribiendo desde el móvil.\n- PROHIBIDO: Palabras corporativas (\"optimizar\", \"sinergia\", \"potenciar\", \"transformar\") o frases robóticas (\"motor genérico\").\n- LENGUAJE: Usa \"arreglar\", \"ahorrar\", \"echar un cable\", \"liada\", \"hueco\".\n\n──────────────────────────\n2. LÓGICA DE NEGOCIO Y ASUNTOS (VINCULACIÓN ESTRICTA)\n──────────────────────────\nAnaliza el input y elige el CAMINO. El asunto DEBE salir de la lista de ese camino exclusivamente.\n\nCAMINO A: Gestión Manual (Teléfono / Papel / Web simple / Formulario)\n-> INPUT: No usan apps de reservas conocidas. Solo teléfono o web básica.\n-> DOLOR: \"¿Te has parado a pensar cuántas llamadas perdéis un viernes noche? ¿Y el problema de los No-Shows?\"\n-> SOLUCIÓN: \"un asistente de IA que contesta al instante y asegura la confirmación por WhatsApp.\"\n-> ASUNTOS PERMITIDOS (Elige uno):\n   - \"Imposible reservar\"\n   - \"Teléfono comunicando\"\n   - \"Llamadas del viernes\"\n   - \"Mesa para el viernes\"\n\nCAMINO B: Plataformas Externas (TheFork, CoverManager, OpenTable...)\n-> INPUT: Usan motores de terceros.\n-> DOLOR: \"¿Has calculado cuánto pagáis a final de mes en comisiones por clientes que ya son habituales?\"\n-> SOLUCIÓN: \"un sistema propio para canalizar esas reservas gratis y quedarte tú el margen.\"\n-> ASUNTOS PERMITIDOS (Elige uno):\n   - \"Comisiones de reservas\"\n   - \"Factura de [NombreApp]\"\n   - \"Ahorrar en reservas\"\n   - \"Tus márgenes\"\n\nCAMINO C: Sin Carta Digital\n-> INPUT: Tienen menú en PDF o foto.\n-> DOLOR: \"¿Todavía seguís dependiendo del PDF o el papel para cambiar un precio?\"\n-> SOLUCIÓN: \"digitalizar la carta y, ya que estamos, automatizar la entrada de reservas.\"\n-> ASUNTOS PERMITIDOS (Elige uno):\n   - \"Precios desactualizados\"\n   - \"Cambio en carta\"\n   - \"Duda sobre el menú\"\n\nCAMINO D: Ya tienen Carta Digital (QR)\n-> ESTRATEGIA: Ignora la carta. Ataca la RESERVA (Usa obligatoriamente la lógica y asuntos del CAMINO A o B según corresponda).\n\n──────────────────────────\n3. ESTRUCTURA BLINDADA (Plantilla Estricta)\n──────────────────────────\nRellena EXACTAMENTE esta plantilla. Respeta los dobles saltos de línea (\\n\\n).\n\n[SALUDO]: \"Buenas,\"\n\\n\\n\n[GANCHO]: \"He visto que estáis funcionando con [Mencionar Tecnología detectada o 'reservas online' (NUNCA digas 'motor genérico')]...\"\n\\n\\n\n[GOLPE]: [Inserta aquí la PREGUNTA DEL DOLOR del Camino elegido].\n\\n\\n\n[PROPUESTA]: Empieza SIEMPRE con \"Te propongo...\" o \"La idea es...\". [Inserta la SOLUCIÓN].\n\\n\\n\n[CIERRE]: \"Si te encaja, escribeme o llamame y lo vemos.\"\n\\n\\n\n[FIRMA]:\nUn saludo,\nGuillermo García\n677127115\n\n──────────────────────────\n4. RESTRICCIONES DE ASUNTO\n──────────────────────────\n- JAMÁS uses un asunto de \"Comisiones\" si el cliente no usa una App externa (Camino A).\n- JAMÁS uses \"Teléfono comunicando\" si el problema es de costes (Camino B).\n- Si usas el asunto \"Factura de [NombreApp]\", asegúrate de poner el nombre real de la app que usan.\n\n──────────────────────────\nOUTPUT JSON\n──────────────────────────\nDevuelve SOLO este JSON válido:\n{\n  \"asunto\": \"Asunto seleccionado de la lista permitida\",\n  \"cuerpo\": \"Texto completo siguiendo la ESTRUCTURA BLINDADA con los \\n\\n correspondientes\"\n}"
+            },
+            {
+              "content": "=DATOS DE ENTRADA:\n- Tecnología: {{ $json.Tecnologia }}\n- Tipo Menú: {{ $json.Tipo_menu }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        -32,
+        112
+      ],
+      "id": "f5710917-933d-4cf5-a431-e0c562e54838",
+      "name": "Agente Redactor",
+      "credentials": {
+        "openAiApi": {
+          "id": "KsAMT7dv6a3lYtX2",
+          "name": "Personal_GPT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cd550b8f-43c7-4470-a309-0fb7ac0efa89",
+              "name": "asunto_final",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).asunto }}",
+              "type": "string"
+            },
+            {
+              "id": "23fc8e23-6f1e-4086-bf65-9b6868a71594",
+              "name": "cuerpo_final",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).cuerpo }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        336,
+        112
+      ],
+      "id": "98c6914f-1dde-4011-af1d-00b3c9b78bde",
+      "name": "Estructura Correo"
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random() * 180) + 120 }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1216,
+        320
+      ],
+      "id": "d5bfe2ee-c8a3-4f14-a86f-4fa39cd9cf79",
+      "name": "Wait",
+      "webhookId": "5babbe80-483a-4d91-a826-20d791e8a2b5"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU",
+          "mode": "list",
+          "cachedResultName": "Buscador_Negocios",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Prospectos_Murcia",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Id_place": "={{ $('Bucle').item.json.Id_place }}",
+            "Estado": "Contactado"
+          },
+          "matchingColumns": [
+            "Id_place"
+          ],
+          "schema": [
+            {
+              "id": "Id_place",
+              "displayName": "Id_place",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nicho",
+              "displayName": "Nicho",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Web",
+              "displayName": "Web",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email_encontrado",
+              "displayName": "Email_encontrado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Instagram",
+              "displayName": "Instagram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tipo_menu",
+              "displayName": "Tipo_menu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tecnologia",
+              "displayName": "Tecnologia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Marketing",
+              "displayName": "Marketing",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email_Prueba",
+              "displayName": "Email_Prueba",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha_contacto",
+              "displayName": "Fecha_contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        896,
+        224
+      ],
+      "id": "90fac3b5-c257-4cba-8310-1c64b7a8752c",
+      "name": "Actualiza Estado",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "Guillermo Garcia <guillermo@automa.my>",
+        "toEmail": "={{ $('Obtener Negocios').item.json.Email_encontrado }}",
+        "subject": "={{ $json.asunto_final }}",
+        "emailFormat": "text",
+        "text": "={{ $json.cuerpo_final }}",
+        "options": {
+          "appendAttribution": false,
+          "bccEmail": "guillermo@automa.my"
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        592,
+        112
+      ],
+      "id": "b59e8d12-fdf2-4978-965e-f0b9cb0c2532",
+      "name": "Enviar Email",
+      "webhookId": "75ecc944-0496-46af-9e12-e6eac2d410f6",
+      "credentials": {
+        "smtp": {
+          "id": "ng0s0sg7emY3vaqT",
+          "name": "Automa Correo"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "LLamada desde Workflow": {
+      "main": [
+        [
+          {
+            "node": "Obtener Negocios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Negocios": {
+      "main": [
+        [
+          {
+            "node": "Limite",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limite": {
+      "main": [
+        [
+          {
+            "node": "Bucle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bucle": {
+      "main": [
+        [
+          {
+            "node": "Confirmacion",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Agente Redactor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente Redactor": {
+      "main": [
+        [
+          {
+            "node": "Estructura Correo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Estructura Correo": {
+      "main": [
+        [
+          {
+            "node": "Enviar Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Bucle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualiza Estado": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Email": {
+      "main": [
+        [
+          {
+            "node": "Actualiza Estado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timeSavedMode": "fixed",
+    "timezone": "Europe/Madrid",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "b9c1fc49-f716-4255-a796-f3e0ed08bc6b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e14d10b7ca64b2f8fb03497664af554029db34b73a341d4b29cefba3eb8cbb37"
+  },
+  "id": "yREFq5wYbWaX8DzJ",
+  "tags": []
+}
