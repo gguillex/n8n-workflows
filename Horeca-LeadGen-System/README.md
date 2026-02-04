@@ -1,6 +1,6 @@
 # 🤖 Horeca LeadGen & Outreach Automation
 
-Este repositorio contiene un sistema automatizado de **prospección y contacto en frío** diseñado para el sector de la restauración (Horeca). 
+Este repositorio contiene un sistema automatizado de **prospección y contacto en frío** diseñado para restaurantes y locales de comida.. 
 
 El sistema utiliza **n8n**, **Google Places API** y **OpenAI (GPT-4o)** para localizar restaurantes, analizar su madurez tecnológica y enviar correos electrónicos hiper-personalizados basados en sus debilidades operativas.
 
