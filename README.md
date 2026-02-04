@@ -9,7 +9,7 @@ El objetivo es compartir herramientas útiles para potenciar la productividad y 
 ### 1. 🤖 [LinkedIn AI Agent](./Linkedin-AI-Agent)
 > *Automatización completa para crear marca personal.*
 * **Qué hace:** Busca temas (o recibe manuales), redacta posts con IA, genera imágenes con DALL-E/Stable Diffusion y gestiona la publicación.
-* **Integraciones:** OpenAI, Google Gemini, Google Drive, Telegram.
+* **Integraciones:** OpenAI, Google Gemini, Google Drive, Telegram...
 * **[📂 Ver archivos y documentación](./Linkedin-AI-Agent)**
 
 ### 2. 🔜 Próximamente...
