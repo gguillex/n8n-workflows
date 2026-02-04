@@ -19,8 +19,8 @@
       "webhookId": "0d747e28-82d6-47c4-a184-1217a64599f3",
       "credentials": {
         "telegramApi": {
-          "id": "sYXmQach0fDdJf2T",
-          "name": "Guillermo_Personal_LinkedIn"
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL_NAME"
         }
       }
     },
@@ -45,8 +45,8 @@
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
-          "id": "KsAMT7dv6a3lYtX2",
-          "name": "Personal_GPT"
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL_NAME"
         }
       }
     },
@@ -215,8 +215,8 @@
       "name": "OpenAI Chat Model1",
       "credentials": {
         "openAiApi": {
-          "id": "KsAMT7dv6a3lYtX2",
-          "name": "Personal_GPT"
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL_NAME"
         }
       }
     },
@@ -239,9 +239,9 @@
       "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "VyZ2vtpkfMemuyGP",
+          "value": "YOUR_WORKFLOW_ID",
           "mode": "list",
-          "cachedResultUrl": "/workflow/VyZ2vtpkfMemuyGP",
+          "cachedResultUrl": "/workflow/YOUR_WORKFLOW_ID",
           "cachedResultName": "Linkedin V1.2"
         },
         "workflowInputs": {
@@ -320,17 +320,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "filtersUI": {
           "values": [
@@ -353,8 +353,8 @@
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -391,8 +391,8 @@
       "name": "Descargador",
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "UymR5RYd7bVXlik6",
-          "name": "Google Drive account"
+          "id": "YOUR_GOOGLE_DRIVE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL_NAME"
         }
       }
     },
@@ -422,8 +422,8 @@
       "name": "Editor de imagen",
       "credentials": {
         "openAiApi": {
-          "id": "KsAMT7dv6a3lYtX2",
-          "name": "Personal_GPT"
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL_NAME"
         }
       }
     },
@@ -449,8 +449,8 @@
       "name": "Actualizador",
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "UymR5RYd7bVXlik6",
-          "name": "Google Drive account"
+          "id": "YOUR_GOOGLE_DRIVE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL_NAME"
         }
       }
     },
@@ -486,8 +486,8 @@
       "name": "Redactor 2.0",
       "credentials": {
         "openAiApi": {
-          "id": "KsAMT7dv6a3lYtX2",
-          "name": "Personal_GPT"
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL_NAME"
         }
       }
     },
@@ -496,17 +496,17 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -624,8 +624,8 @@
       "name": "Actualizador Texto_final",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -648,8 +648,8 @@
       "webhookId": "6ef7b282-8c71-41bb-a83c-8c93f9afea62",
       "credentials": {
         "telegramApi": {
-          "id": "sYXmQach0fDdJf2T",
-          "name": "Guillermo_Personal_LinkedIn"
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL_NAME"
         }
       }
     },
@@ -672,8 +672,8 @@
       "webhookId": "6ef7b282-8c71-41bb-a83c-8c93f9afea62",
       "credentials": {
         "telegramApi": {
-          "id": "sYXmQach0fDdJf2T",
-          "name": "Guillermo_Personal_LinkedIn"
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL_NAME"
         }
       }
     },
@@ -713,14 +713,14 @@
       "webhookId": "eec9b1ab-8096-4fdf-95e9-f6e5656e6b02",
       "credentials": {
         "telegramApi": {
-          "id": "sYXmQach0fDdJf2T",
-          "name": "Guillermo_Personal_LinkedIn"
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL_NAME"
         }
       }
     },
     {
       "parameters": {
-        "person": "Kh--3qBVh9",
+        "person": "YOUR_LINKEDIN_PERSON_ID",
         "text": "={{ $json.draft_text }}",
         "shareMediaCategory": "IMAGE",
         "additionalFields": {}
@@ -735,14 +735,14 @@
       "name": "Create a post",
       "credentials": {
         "linkedInOAuth2Api": {
-          "id": "BV5SybAwjgn4Pr5e",
-          "name": "LinkedIn account"
+          "id": "YOUR_LINKEDIN_CREDENTIAL_ID",
+          "name": "YOUR_LINKEDIN_CREDENTIAL_NAME"
         }
       }
     },
     {
       "parameters": {
-        "person": "Kh--3qBVh9",
+        "person": "YOUR_LINKEDIN_PERSON_ID",
         "text": "={{ $json.draft_text }}",
         "additionalFields": {}
       },
@@ -756,8 +756,8 @@
       "name": "Create a post1",
       "credentials": {
         "linkedInOAuth2Api": {
-          "id": "BV5SybAwjgn4Pr5e",
-          "name": "LinkedIn account"
+          "id": "YOUR_LINKEDIN_CREDENTIAL_ID",
+          "name": "YOUR_LINKEDIN_CREDENTIAL_NAME"
         }
       }
     },
@@ -781,8 +781,8 @@
       "name": "Descargador_Final",
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "UymR5RYd7bVXlik6",
-          "name": "Google Drive account"
+          "id": "YOUR_GOOGLE_DRIVE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL_NAME"
         }
       }
     },
@@ -790,17 +790,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "filtersUI": {
           "values": [
@@ -823,8 +823,8 @@
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -832,17 +832,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "filtersUI": {
           "values": [
@@ -865,8 +865,8 @@
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -875,17 +875,17 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1004,8 +1004,8 @@
       "name": "Actualizador Final_sin_imagen",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1014,17 +1014,17 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1143,8 +1143,8 @@
       "name": "Actualizador Final_con_imagen",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1167,8 +1167,8 @@
       "webhookId": "9a60aff8-3e33-436c-80d7-7b06679d029b",
       "credentials": {
         "telegramApi": {
-          "id": "sYXmQach0fDdJf2T",
-          "name": "Guillermo_Personal_LinkedIn"
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL_NAME"
         }
       }
     },
@@ -1191,8 +1191,8 @@
       "webhookId": "9a60aff8-3e33-436c-80d7-7b06679d029b",
       "credentials": {
         "telegramApi": {
-          "id": "sYXmQach0fDdJf2T",
-          "name": "Guillermo_Personal_LinkedIn"
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL_NAME"
         }
       }
     }
@@ -1496,11 +1496,11 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "f6b7297b-c876-4615-a3bd-6c606f18cb4f",
+  "versionId": "REPLACE_WITH_YOUR_VERSION_ID",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "e14d10b7ca64b2f8fb03497664af554029db34b73a341d4b29cefba3eb8cbb37"
+    "instanceId": "REPLACE_WITH_YOUR_INSTANCE_ID"
   },
-  "id": "4sT7dLFlTZBXchnN",
+  "id": "REPLACE_WITH_YOUR_WORKFLOW_ID",
   "tags": []
 }
