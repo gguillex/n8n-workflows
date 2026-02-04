@@ -12,7 +12,13 @@ El objetivo es compartir herramientas útiles para potenciar la productividad y 
 * **Integraciones:** OpenAI, Google Gemini, Google Drive, Telegram...
 * **[📂 Ver archivos y documentación](./Linkedin-AI-Agent)**
 
-### 2. 🔜 Próximamente...
+### 2. 🍽️ [Horeca LeadGen System](./Horeca-LeadGen-System)
+> *Sistema autónomo de auditoría y ventas B2B para restaurantes.*
+* **Qué hace:** Escanea Google Maps buscando negocios locales, audita sus webs con IA para detectar "dolores" (menús PDF, motores de reservas con altas comisiones) y envía emails fríos hiper-personalizados ofreciendo soluciones específicas.
+* **Integraciones:** Google Places API, OpenAI (GPT-4o), Google Sheets, Telegram.
+* **[📂 Ver archivos y documentación](./Horeca-LeadGen-System)**
+
+### 3. 🔜 Próximamente...
 * *Aquí iré subiendo nuevos bots (Telegram, Email, Scrapers, etc.).*
 
 ---
@@ -25,7 +31,7 @@ El objetivo es compartir herramientas útiles para potenciar la productividad y 
     * Revisa los nodos marcados en rojo al importar y conecta tus cuentas.
 
 ## ⚠️ Aviso Legal
-Estos flujos se comparten con fines educativos. Asegúrate de revisar las políticas de uso de las APIs conectadas (LinkedIn, OpenAI, etc.).
+Estos flujos se comparten con fines educativos. Asegúrate de revisar las políticas de uso de las APIs conectadas (LinkedIn, OpenAI, Google, etc.).
 
 ---
 ⭐ **Si te son útiles, ¡dale una estrella al repo!**
