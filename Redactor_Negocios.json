@@ -18,17 +18,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU",
+          "value": "TU_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Buscador_Negocios",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Prospectos_Murcia",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_SPREADSHEET_ID/edit#gid=0"
         },
         "filtersUI": {
           "values": [
@@ -51,8 +51,8 @@
       "executeOnce": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "TU_CREDENTIAL_ID",
+          "name": "Google_Sheets_Credential"
         }
       }
     },
@@ -85,7 +85,7 @@
     },
     {
       "parameters": {
-        "chatId": "6563968635",
+        "chatId": "TU_CHAT_ID",
         "text": "*Correos Enviados 🚀*",
         "additionalFields": {
           "appendAttribution": false
@@ -103,8 +103,8 @@
       "executeOnce": true,
       "credentials": {
         "telegramApi": {
-          "id": "sYXmQach0fDdJf2T",
-          "name": "Guillermo_Personal_LinkedIn"
+          "id": "TU_CREDENTIAL_ID",
+          "name": "Telegram_Credential"
         }
       }
     },
@@ -120,7 +120,7 @@
           "values": [
             {
               "role": "system",
-              "content": "=Eres Guillermo García, Consultor de Negocio experto en Hostelería.\nTu objetivo es iniciar una conversación real mediante un email frío.\n\n──────────────────────────\n1. REGLAS DE ORO\n──────────────────────────\n- Tu tono es de \"contacto guardado en la agenda\": Breve, directo, sin florituras.\n- NO actúes como un robot de marketing. Habla como una persona normal escribiendo desde el móvil.\n- PROHIBIDO: Palabras corporativas (\"optimizar\", \"sinergia\", \"potenciar\", \"transformar\") o frases robóticas (\"motor genérico\").\n- LENGUAJE: Usa \"arreglar\", \"ahorrar\", \"echar un cable\", \"liada\", \"hueco\".\n\n──────────────────────────\n2. LÓGICA DE NEGOCIO Y ASUNTOS (VINCULACIÓN ESTRICTA)\n──────────────────────────\nAnaliza el input y elige el CAMINO. El asunto DEBE salir de la lista de ese camino exclusivamente.\n\nCAMINO A: Gestión Manual (Teléfono / Papel / Web simple / Formulario)\n-> INPUT: No usan apps de reservas conocidas. Solo teléfono o web básica.\n-> DOLOR: \"¿Te has parado a pensar cuántas llamadas perdéis un viernes noche? ¿Y el problema de los No-Shows?\"\n-> SOLUCIÓN: \"un asistente de IA que contesta al instante y asegura la confirmación por WhatsApp.\"\n-> ASUNTOS PERMITIDOS (Elige uno):\n   - \"Imposible reservar\"\n   - \"Teléfono comunicando\"\n   - \"Llamadas del viernes\"\n   - \"Mesa para el viernes\"\n\nCAMINO B: Plataformas Externas (TheFork, CoverManager, OpenTable...)\n-> INPUT: Usan motores de terceros.\n-> DOLOR: \"¿Has calculado cuánto pagáis a final de mes en comisiones por clientes que ya son habituales?\"\n-> SOLUCIÓN: \"un sistema propio para canalizar esas reservas gratis y quedarte tú el margen.\"\n-> ASUNTOS PERMITIDOS (Elige uno):\n   - \"Comisiones de reservas\"\n   - \"Factura de [NombreApp]\"\n   - \"Ahorrar en reservas\"\n   - \"Tus márgenes\"\n\nCAMINO C: Sin Carta Digital\n-> INPUT: Tienen menú en PDF o foto.\n-> DOLOR: \"¿Todavía seguís dependiendo del PDF o el papel para cambiar un precio?\"\n-> SOLUCIÓN: \"digitalizar la carta y, ya que estamos, automatizar la entrada de reservas.\"\n-> ASUNTOS PERMITIDOS (Elige uno):\n   - \"Precios desactualizados\"\n   - \"Cambio en carta\"\n   - \"Duda sobre el menú\"\n\nCAMINO D: Ya tienen Carta Digital (QR)\n-> ESTRATEGIA: Ignora la carta. Ataca la RESERVA (Usa obligatoriamente la lógica y asuntos del CAMINO A o B según corresponda).\n\n──────────────────────────\n3. ESTRUCTURA BLINDADA (Plantilla Estricta)\n──────────────────────────\nRellena EXACTAMENTE esta plantilla. Respeta los dobles saltos de línea (\\n\\n).\n\n[SALUDO]: \"Buenas,\"\n\\n\\n\n[GANCHO]: \"He visto que estáis funcionando con [Mencionar Tecnología detectada o 'reservas online' (NUNCA digas 'motor genérico')]...\"\n\\n\\n\n[GOLPE]: [Inserta aquí la PREGUNTA DEL DOLOR del Camino elegido].\n\\n\\n\n[PROPUESTA]: Empieza SIEMPRE con \"Te propongo...\" o \"La idea es...\". [Inserta la SOLUCIÓN].\n\\n\\n\n[CIERRE]: \"Si te encaja, escribeme o llamame y lo vemos.\"\n\\n\\n\n[FIRMA]:\nUn saludo,\nGuillermo García\n677127115\n\n──────────────────────────\n4. RESTRICCIONES DE ASUNTO\n──────────────────────────\n- JAMÁS uses un asunto de \"Comisiones\" si el cliente no usa una App externa (Camino A).\n- JAMÁS uses \"Teléfono comunicando\" si el problema es de costes (Camino B).\n- Si usas el asunto \"Factura de [NombreApp]\", asegúrate de poner el nombre real de la app que usan.\n\n──────────────────────────\nOUTPUT JSON\n──────────────────────────\nDevuelve SOLO este JSON válido:\n{\n  \"asunto\": \"Asunto seleccionado de la lista permitida\",\n  \"cuerpo\": \"Texto completo siguiendo la ESTRUCTURA BLINDADA con los \\n\\n correspondientes\"\n}"
+              "content": "=Eres un Consultor de Negocio experto en Hostelería.\nTu objetivo es iniciar una conversación real mediante un email frío.\n\n──────────────────────────\n1. REGLAS DE ORO\n──────────────────────────\n- Tu tono es de \"contacto guardado en la agenda\": Breve, directo, sin florituras.\n- NO actúes como un robot de marketing. Habla como una persona normal escribiendo desde el móvil.\n- PROHIBIDO: Palabras corporativas (\"optimizar\", \"sinergia\", \"potenciar\", \"transformar\") o frases robóticas (\"motor genérico\").\n- LENGUAJE: Usa \"arreglar\", \"ahorrar\", \"echar un cable\", \"liada\", \"hueco\".\n\n──────────────────────────\n2. LÓGICA DE NEGOCIO Y ASUNTOS (VINCULACIÓN ESTRICTA)\n──────────────────────────\nAnaliza el input y elige el CAMINO. El asunto DEBE salir de la lista de ese camino exclusivamente.\n\nCAMINO A: Gestión Manual (Teléfono / Papel / Web simple / Formulario)\n-> INPUT: No usan apps de reservas conocidas. Solo teléfono o web básica.\n-> DOLOR: \"¿Te has parado a pensar cuántas llamadas perdéis un viernes noche? ¿Y el problema de los No-Shows?\"\n-> SOLUCIÓN: \"un asistente de IA que contesta al instante y asegura la confirmación por WhatsApp.\"\n-> ASUNTOS PERMITIDOS (Elige uno):\n   - \"Imposible reservar\"\n   - \"Teléfono comunicando\"\n   - \"Llamadas del viernes\"\n   - \"Mesa para el viernes\"\n\nCAMINO B: Plataformas Externas (TheFork, CoverManager, OpenTable...)\n-> INPUT: Usan motores de terceros.\n-> DOLOR: \"¿Has calculado cuánto pagáis a final de mes en comisiones por clientes que ya son habituales?\"\n-> SOLUCIÓN: \"un sistema propio para canalizar esas reservas gratis y quedarte tú el margen.\"\n-> ASUNTOS PERMITIDOS (Elige uno):\n   - \"Comisiones de reservas\"\n   - \"Factura de [NombreApp]\"\n   - \"Ahorrar en reservas\"\n   - \"Tus márgenes\"\n\nCAMINO C: Sin Carta Digital\n-> INPUT: Tienen menú en PDF o foto.\n-> DOLOR: \"¿Todavía seguís dependiendo del PDF o el papel para cambiar un precio?\"\n-> SOLUCIÓN: \"digitalizar la carta y, ya que estamos, automatizar la entrada de reservas.\"\n-> ASUNTOS PERMITIDOS (Elige uno):\n   - \"Precios desactualizados\"\n   - \"Cambio en carta\"\n   - \"Duda sobre el menú\"\n\nCAMINO D: Ya tienen Carta Digital (QR)\n-> ESTRATEGIA: Ignora la carta. Ataca la RESERVA (Usa obligatoriamente la lógica y asuntos del CAMINO A o B según corresponda).\n\n──────────────────────────\n3. ESTRUCTURA BLINDADA (Plantilla Estricta)\n──────────────────────────\nRellena EXACTAMENTE esta plantilla. Respeta los dobles saltos de línea (\\n\\n).\n\n[SALUDO]: \"Buenas,\"\n\\n\\n\n[GANCHO]: \"He visto que estáis funcionando con [Mencionar Tecnología detectada o 'reservas online' (NUNCA digas 'motor genérico')]...\"\n\\n\\n\n[GOLPE]: [Inserta aquí la PREGUNTA DEL DOLOR del Camino elegido].\n\\n\\n\n[PROPUESTA]: Empieza SIEMPRE con \"Te propongo...\" o \"La idea es...\". [Inserta la SOLUCIÓN].\n\\n\\n\n[CIERRE]: \"Si te encaja, escribeme o llamame y lo vemos.\"\n\\n\\n\n[FIRMA]:\nUn saludo,\n[TU_NOMBRE]\n[TU_TELEFONO]\n\n──────────────────────────\n4. RESTRICCIONES DE ASUNTO\n──────────────────────────\n- JAMÁS uses un asunto de \"Comisiones\" si el cliente no usa una App externa (Camino A).\n- JAMÁS uses \"Teléfono comunicando\" si el problema es de costes (Camino B).\n- Si usas el asunto \"Factura de [NombreApp]\", asegúrate de poner el nombre real de la app que usan.\n\n──────────────────────────\nOUTPUT JSON\n──────────────────────────\nDevuelve SOLO este JSON válido:\n{\n  \"asunto\": \"Asunto seleccionado de la lista permitida\",\n  \"cuerpo\": \"Texto completo siguiendo la ESTRUCTURA BLINDADA con los \\n\\n correspondientes\"\n}"
             },
             {
               "content": "=DATOS DE ENTRADA:\n- Tecnología: {{ $json.Tecnologia }}\n- Tipo Menú: {{ $json.Tipo_menu }}"
@@ -140,8 +140,8 @@
       "name": "Agente Redactor",
       "credentials": {
         "openAiApi": {
-          "id": "KsAMT7dv6a3lYtX2",
-          "name": "Personal_GPT"
+          "id": "TU_CREDENTIAL_ID",
+          "name": "OpenAI_Credential"
         }
       }
     },
@@ -193,17 +193,17 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU",
+          "value": "TU_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Buscador_Negocios",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Prospectos_Murcia",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_SPREADSHEET_ID/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -363,21 +363,21 @@
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "TU_CREDENTIAL_ID",
+          "name": "Google_Sheets_Credential"
         }
       }
     },
     {
       "parameters": {
-        "fromEmail": "Guillermo Garcia <guillermo@automa.my>",
+        "fromEmail": "Tu Nombre <tu@email.com>",
         "toEmail": "={{ $('Obtener Negocios').item.json.Email_encontrado }}",
         "subject": "={{ $json.asunto_final }}",
         "emailFormat": "text",
         "text": "={{ $json.cuerpo_final }}",
         "options": {
           "appendAttribution": false,
-          "bccEmail": "guillermo@automa.my"
+          "bccEmail": "tu@email.com"
         }
       },
       "type": "n8n-nodes-base.emailSend",
@@ -391,8 +391,8 @@
       "webhookId": "75ecc944-0496-46af-9e12-e6eac2d410f6",
       "credentials": {
         "smtp": {
-          "id": "ng0s0sg7emY3vaqT",
-          "name": "Automa Correo"
+          "id": "TU_CREDENTIAL_ID",
+          "name": "SMTP_Credential"
         }
       }
     }
@@ -514,11 +514,11 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "b9c1fc49-f716-4255-a796-f3e0ed08bc6b",
+  "versionId": "NUEVO_VERSION_ID",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "e14d10b7ca64b2f8fb03497664af554029db34b73a341d4b29cefba3eb8cbb37"
+    "instanceId": "TU_INSTANCE_ID"
   },
-  "id": "yREFq5wYbWaX8DzJ",
+  "id": "NUEVO_WORKFLOW_ID",
   "tags": []
 }
