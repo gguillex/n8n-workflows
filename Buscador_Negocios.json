@@ -14,7 +14,7 @@
             },
             {
               "name": "X-Goog-Api-Key",
-              "value": "AIzaSyCf4vTHEyd1kNyNXiWQExzfJLwaGIvTmCU"
+              "value": "TU_GOOGLE_PLACES_API_KEY"
             },
             {
               "name": "X-Goog-FieldMask",
@@ -142,8 +142,8 @@
       "name": "Analizar Web",
       "credentials": {
         "openAiApi": {
-          "id": "KsAMT7dv6a3lYtX2",
-          "name": "Personal_GPT"
+          "id": "TU_CREDENTIAL_ID",
+          "name": "OpenAI_Credential"
         }
       }
     },
@@ -276,17 +276,17 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU",
+          "value": "TU_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Buscador_Negocios",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Prospectos_Murcia",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_SPREADSHEET_ID/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -437,8 +437,8 @@
       "name": "Actualizar con Correo",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "TU_CREDENTIAL_ID",
+          "name": "Google_Sheets_Credential"
         }
       }
     },
@@ -447,17 +447,17 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU",
+          "value": "TU_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Buscador_Negocios",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Prospectos_Murcia",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_SPREADSHEET_ID/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -604,8 +604,8 @@
       "name": "Actualizar sin Correo",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "TU_CREDENTIAL_ID",
+          "name": "Google_Sheets_Credential"
         }
       }
     },
@@ -741,7 +741,7 @@
     },
     {
       "parameters": {
-        "chatId": "6563968635",
+        "chatId": "TU_CHAT_ID",
         "text": "={{ $json.mensaje_telegram }}",
         "additionalFields": {
           "appendAttribution": false
@@ -758,8 +758,8 @@
       "webhookId": "df751f98-cf4c-4083-9300-d721b65938ab",
       "credentials": {
         "telegramApi": {
-          "id": "sYXmQach0fDdJf2T",
-          "name": "Guillermo_Personal_LinkedIn"
+          "id": "TU_CREDENTIAL_ID",
+          "name": "Telegram_Credential"
         }
       }
     },
@@ -780,9 +780,9 @@
       "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "yREFq5wYbWaX8DzJ",
+          "value": "TU_WORKFLOW_ID",
           "mode": "list",
-          "cachedResultUrl": "/workflow/yREFq5wYbWaX8DzJ",
+          "cachedResultUrl": "/workflow/TU_WORKFLOW_ID",
           "cachedResultName": "Redactor_Negocios"
         },
         "workflowInputs": {
@@ -806,7 +806,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// 1. Lista de palabras clave para variar (Añade todas las que quieras)\nconst nichos = [\n  \"Restaurantes\",\n  \"Bares de tapas\",\n  \"Hamburgueserías\",\n  \"Pizzerías\",\n  \"Asador de carne\",\n  \"Restaurante Italiano\",\n  \"Restaurante Japonés\",\n  \"Cafeterías y Brunch\",\n  \"Gastrobar\",\n  \"Marisquería\",\n  \"Comida para llevar\",\n  \"Bocatería\"\n];\n\n// 2. Tu ciudad (Cámbiala si te expandes)\nconst ciudad = \"Murcia\";\n\n// 3. La IA elige uno al azar\nconst nicho_elegido = nichos[Math.floor(Math.random() * nichos.length)];\n\n// 4. Creamos la búsqueda final\nconst busqueda_final = `${nicho_elegido} en ${ciudad}`;\n\n// 5. Enviamos el dato al siguiente nodo\nreturn {\n  json: {\n    busqueda: busqueda_final,\n    nicho: nicho_elegido // Por si quieres guardarlo en el Excel para saber de qué era\n  }\n};"
+        "jsCode": "// 1. Lista de palabras clave para variar (Añade todas las que quieras)\nconst nichos = [\n  \"Restaurantes\",\n  \"Bares de tapas\",\n  \"Hamburgueserías\",\n  \"Pizzerías\",\n  \"Asador de carne\",\n  \"Restaurante Italiano\",\n  \"Restaurante Japonés\",\n  \"Cafeterías y Brunch\",\n  \"Gastrobar\",\n  \"Marisquería\",\n  \"Comida para llevar\",\n  \"Bocatería\"\n];\n\n// 2. Tu ciudad (Cámbiala si te expandes)\nconst ciudad = \"TU_CIUDAD\";\n\n// 3. La IA elige uno al azar\nconst nicho_elegido = nichos[Math.floor(Math.random() * nichos.length)];\n\n// 4. Creamos la búsqueda final\nconst busqueda_final = `${nicho_elegido} en ${ciudad}`;\n\n// 5. Enviamos el dato al siguiente nodo\nreturn {\n  json: {\n    busqueda: busqueda_final,\n    nicho: nicho_elegido // Por si quieres guardarlo en el Excel para saber de qué era\n  }\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -846,17 +846,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU",
+          "value": "TU_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Buscador_Negocios",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Prospectos_Murcia",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_SPREADSHEET_ID/edit#gid=0"
         },
         "options": {}
       },
@@ -871,8 +871,8 @@
       "alwaysOutputData": false,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "TU_CREDENTIAL_ID",
+          "name": "Google_Sheets_Credential"
         }
       }
     }
@@ -1112,11 +1112,11 @@
     "availableInMCP": false,
     "timezone": "Europe/Madrid"
   },
-  "versionId": "e53a6ef7-181b-4f46-a894-5471acc90281",
+  "versionId": "NUEVO_VERSION_ID",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "e14d10b7ca64b2f8fb03497664af554029db34b73a341d4b29cefba3eb8cbb37"
+    "instanceId": "TU_INSTANCE_ID"
   },
-  "id": "al13dP4otlErCJum",
+  "id": "NUEVO_WORKFLOW_ID",
   "tags": []
 }
