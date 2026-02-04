@@ -1,0 +1,2048 @@
+{
+  "name": "Linkedin V1.0",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 3,
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -464,
+        288
+      ],
+      "id": "3d9edd16-6435-423c-b5a7-76f80520e54a",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a5e2f7be-b64a-4815-8796-fd2924cc2bd2",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1536,
+        432
+      ],
+      "id": "bbd4d793-1ef4-4cef-8d60-1fd5262ad726",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $json.output[0].content[0].text.topic }}",
+            "id": "={{ $execution.id }}",
+            "status": "PENDING",
+            "media_type": "IMAGEN",
+            "created_at": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "draft_text",
+              "displayName": "draft_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_image_prompt",
+              "displayName": "current_image_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_url",
+              "displayName": "media_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3040,
+        448
+      ],
+      "id": "19a8e893-927a-448d-8d9d-a5d9057ed33f",
+      "name": "Nueva Fila",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "topic",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        448
+      ],
+      "id": "a398f3fe-5c70-4480-805e-2a326d186076",
+      "name": "Split Out",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "topic",
+              "renameField": true,
+              "outputFieldName": "lista_temas"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2448,
+        448
+      ],
+      "id": "7754098e-3ef1-49d0-a0b9-84f6116d34eb",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9b480a95-605f-4779-8307-89cb8bba3e43",
+              "name": "tema_personalizado",
+              "value": "={{ $json.refined_instruction }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -32,
+        432
+      ],
+      "id": "56e32588-8c13-4fcb-81aa-b6ffd8194e9e",
+      "name": "Recibir Orden"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "7efd8389-32b6-41b3-a2e5-e52f914fdeda",
+                    "leftValue": "={{ $json.ruta }}",
+                    "rightValue": "SPECIFIC_NEWS",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.ruta }}",
+                    "rightValue": "DEFAULT",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "f97278f0-c732-4c40-972c-6dd0dd53e030"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "52c5eb95-96a6-4419-a4e8-f346aa026c31",
+                    "leftValue": "={{ $json.ruta }}",
+                    "rightValue": "TOPIC_ONLY",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        768,
+        416
+      ],
+      "id": "3c65623b-93fa-4e5e-ab3c-d10d09a8ab37",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -448,
+        592
+      ],
+      "id": "2c6e44af-30c8-4717-a327-bc50e8bef963",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=Actúa como un Lead Tech Senior y Arquitecto de Software.\n\nTu tarea es diseñar la estructura técnica para un post de LinkedIn de alto valor.\n\nNO quiero consejos genéricos. Quiero profundidad técnica real, aplicada y accionable.\n\nMEMORIA DE PUBLICACIONES (NO REPETIR):\nA continuación tienes la lista de los temas que YA hemos publicado anteriormente:\n\"\"\"\n{{ $json.lista_temas }}\n\"\"\"\n\nINSTRUCCIÓN CRÍTICA DE MEMORIA:\nAnaliza la lista de arriba. Está terminantemente PROHIBIDO generar un tema que sea igual o muy similar a los del historial.\nDebes buscar un ángulo técnico nuevo, una tecnología diferente o una capa de abstracción distinta (arquitectura, rendimiento, seguridad, observabilidad, fiabilidad, escalabilidad, etc.).\n\nBALANCE DE DOMINIOS:\nSelecciona el tema de forma estratégica entre distintas áreas técnicas como:\n\nBackend & Arquitectura de Software\n\nCloud & DevOps\n\nData & Performance\n\nObservabilidad & Reliability\n\nCiberseguridad & Seguridad Aplicada\n\nLa ciberseguridad debe aparecer de forma periódica, pero no en todos los posts.\nPrioriza variedad y alternancia de dominios.\n\nInstrucciones de Redacción:\n\nElige un tema técnico específico (Docker, Kubernetes, Clean Code, Patrones de Diseño, SQL Tuning, IAM, OAuth2, Zero Trust, Memory Management, etc.).\n\nDesarrolla 5 puntos clave, pero NO uses frases cortas.\n\nEn cada punto, debes incluir el \"CÓMO\" técnico o el \"POR QUÉ\" crítico.\n\nMenciona cuando sea relevante: comandos, flags, configuraciones, estructuras internas, trade-offs y decisiones arquitectónicas.\n\nEjemplo de nivel esperado:\nMAL: \"Usa índices en tu base de datos.\"\nBIEN: \"Evita Full Table Scans usando índices compuestos en columnas de filtrado frecuente (WHERE). Revisa el EXPLAIN ANALYZE para confirmar el uso del índice.\"\n\nFORMATO DE SALIDA (JSON ÚNICO):\nResponde ÚNICA y EXCLUSIVAMENTE con este objeto JSON sin bloques de código markdown:\n\n{\n\"topic\": \"Título técnico y específico\",\n\"target_audience\": \"Senior Backend Devs & DevOps\",\n\"key_points\": [\n\"Punto 1: Explicación técnica detallada con mención a comandos/conceptos.\",\n\"Punto 2: Explicación técnica detallada...\",\n\"Punto 3: Explicación técnica detallada...\",\n\"Punto 4: Explicación técnica detallada...\",\n\"Punto 5: Explicación técnica detallada...\"\n]\n}"
+            },
+            {
+              "content": "Genera el tema técnico de hoy."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "textFormat": {
+            "textOptions": {
+              "type": "json_object"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        2672,
+        448
+      ],
+      "id": "e80d411a-0618-492d-94e8-f287ba8963ff",
+      "name": "Buscador de noticias",
+      "credentials": {
+        "openAiApi": {
+          "id": "KsAMT7dv6a3lYtX2",
+          "name": "Personal_GPT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Eres un Tech Lead Senior y Arquitecto de Software con más de 10 años de experiencia (\"battle-tested\"). Tu tarea es transformar datos estructurados (JSON) en publicaciones virales y educativas para LinkedIn y Telegram.\n\nTUS OBJETIVOS DE PERSONALIDAD:\n1.  NO suenes como una IA, ni como un redactor de marketing, ni como un manual de instrucciones.\n2.  Habla de \"tú a tú\" con otros desarrolladores. Usa un tono directo, opinativo y empático con los dolores reales (latencia, bugs en producción, seguridad).\n3.  Evita clichés como \"¿Te has preguntado alguna vez...?\" o \"En el mundo digital de hoy...\". Ve directo al grano.\n4.  Usa jerga técnica con naturalidad (deploy, cuello de botella, throughput, failover).\n5.  Usa emojis si lo ves oportuno.\n\nREGLAS DE FORMATO ESTRICTAS (Para compatibilidad LinkedIn/Telegram):\n- PROHIBIDO usar Markdown estándar de formato. NO uses asteriscos (**negrita**), guiones bajos (__cursiva__) ni almohadillas (#) para títulos.\n- Para resaltar palabras clave, comandos o conceptos importantes usa MAYÚSCULAS o comillas simples ' '.\n- Usa símbolos visuales limpios para listas o énfasis: • → ↳ ⚠️ 🚀 ✅.\n- Estructura visual: Párrafos muy cortos (1 o 2 líneas máximo) separados por líneas en blanco. Facilita la lectura en móvil (\"scannability\").\n\nESTRUCTURA DEL POST:\n1.  Gancho (Hook): Una afirmación contraintuitiva, un error común o un problema doloroso. Nunca empieces con \"Hola\" o títulos.\n2.  Cuerpo: Desarrolla los puntos del JSON conectándolos narrativamente. No hagas una lista de características, explica el valor real.\n3.  Cierre: Una reflexión final de experto o un consejo de seguridad.\n4.  Hashtags: 4 a 6 etiquetas relevantes al final.\n\nTU SALIDA:\nDevuelve ÚNICAMENTE el texto final del post. No incluyas el JSON, ni saludos, ni notas previas."
+            },
+            {
+              "content": "=Tengo este borrador de ideas técnicas estructuradas en un JSON.\n\nRedacta el post final siguiendo estrictamente tu personalidad de Tech Lead y las reglas de formato (sin markdown). Haz que suene humano y experto.\n\nJSON DE ENTRADA:\nTEMA PRINCIPAL: {{ $json.topic }}\n\nINFORMACIÓN DE BASE (Investigación): \n{{ $json.final_content }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        4208,
+        448
+      ],
+      "id": "88c32e59-76a7-4d5f-ae37-636ade63fb18",
+      "name": "Redactor de noticias",
+      "credentials": {
+        "openAiApi": {
+          "id": "KsAMT7dv6a3lYtX2",
+          "name": "Personal_GPT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Crea el prompt basado en este texto: {{ $json.draft_text }}",
+        "options": {
+          "systemMessage": "Actúa como un Diseñador Gráfico Senior especializado en infografías corporativas para LinkedIn.\n\nTu objetivo es crear imágenes útiles, limpias, legibles y esquemáticas, NO decorativas ni artísticas. Las imágenes deben parecer material de documentación técnica visual moderna.\n\n\nESTILO BASE OBLIGATORIO\n-Flat Design / Vector Art style / Corporate Minimalist.\n-FONDO: Únicamente blanco puro (#FFFFFF), blanco con una cuadrícula técnica sutil (grid) o colores pastel muy claros (soft mint, light azure, pale sand). PROHIBIDO el gris oscuro, negro o tonos sombríos.\n-CONTRASTE: Alto contraste entre el texto/iconos y el fondo claro.\n-Nada de 3D, neón, cyberpunk, glow, luces cinematográficas ni realismo.\n\n\nVARIACIÓN CONTROLADA DE COMPOSICIÓN\n-Selecciona SOLO UNA estructura por imagen: Grid Layout, Vertical Stack Cards, Split Screen, Flow Diagram o App Window Mockup (estilo macOS).\n\n\nESTILO VISUAL POSIBLE (elige uno)\n-Technical Blueprint (sobre fondo blanco).\n-Product Documentation Style.\n-Software Architecture Diagram.\n-Dev Cheatsheet Style.\n-Minimal Editorial Tech.\n\n\nINSTRUCCIONES DE CONTENIDO\n-Lee el post y extrae SOLO los 4–5 conceptos clave. Cada uno en una caja delimitada.\n-Máximo 1 línea corta por concepto. Iconos vectoriales simples.\n-Tipografía Sans-serif negrita, muy legible.\n\n\nREGLAS DE CALIDAD\n-Mucho espacio en blanco (Negative Space).\n-Sin fondos ruidosos, oscuros o degradados pesados.\n-Sin personas, sin adornos, sin efectos de iluminación.\n-Estética de \"página de manual técnico\" o \"guía rápida limpia\".\n\n\nESTRUCTURA DEL PROMPT DE SALIDA (JSON) Responde ÚNICA y EXCLUSIVAMENTE con este JSON:\n{\n  \"detected_keywords\": [\"Concepto1\", \"Concepto2\", \"Concepto3\", \"Concepto4\"],\n  \"layout_type\": \"...\",\n  \"visual_style\": \"...\",\n  \"final_prompt\": \"A professional educational infographic about [TEMA]. Flat vector design, corporate minimalist style. [layout_type] composition. Background: [Solid white / White with subtle light grey grid / Very soft subtle pastel]. High-contrast layout using a bright and clean professional palette. Clearly separated sections for: '[Concepto1]', '[Concepto2]', '[Concepto3]', '[Concepto4]'. Use simple flat vector icons, large bold sans-serif typography, and massive amounts of white space. Clean, schematic, technical documentation look. NO dark backgrounds, NO gray tones, NO 3D, NO shadows, NO people.\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        4848,
+        448
+      ],
+      "id": "156b8c6e-0fce-4150-9cd4-a3c651ab62d9",
+      "name": "Generador de prompts"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3-pro-image-preview",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3-pro-image-preview (Nano Banana Pro)"
+        },
+        "prompt": "=Horizontal landscape orientation, 16:9 aspect ratio, optimized for LinkedIn feed. {{ $json.final_prompt }}",
+        "options": {
+          "binaryPropertyOutput": "data"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        5488,
+        448
+      ],
+      "id": "c220a554-faa1-4e71-be79-5b4a5476bbd6",
+      "name": "Generador de imagen",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "fFNwmmVwT0Ba8Veo",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3-pro-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        4768,
+        640
+      ],
+      "id": "fc91eced-8f51-40a5-be44-2917fb8925ee",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "fFNwmmVwT0Ba8Veo",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=Eres el Clasificador de Intención de una Fábrica de Contenidos. Tu trabajo es decidir si necesitamos buscar en internet o no.\n\n\nREGLAS DE CLASIFICACIÓN (Sigue este orden de prioridad):\n\n1. \"DEFAULT\":\n   - Si la entrada está vacía, es nula, o dice cosas genéricas como \"otra\", \"dame otra\", \"siguiente\", \"random\".\n   - Aquí el sistema usará su configuración por defecto.\n\n2. \"SPECIFIC_NEWS\" (BÚSQUEDA OBLIGATORIA):\n   - Se activa si el usuario pide explícitamente información temporal o de actualidad sobre CUALQUIER tema.\n   - PALABRAS CLAVE: \"noticia\", \"actualidad\", \"novedades\", \"último sobre...\", \"qué ha pasado con...\", \"hoy\", \"esta semana\", \"tendencias de...\".\n   - Ejemplo: \"Noticias de mecánica\", \"Actualidad de Ferrari\", \"Novedades en Python\".\n   - Acción: Se debe buscar en internet.\n\n3. \"TOPIC_ONLY\" (CONOCIMIENTO GENERAL):\n   - Se activa SOLO si el usuario pide un tema educativo, teórico o atemporal SIN pedir noticias.\n   - PALABRAS CLAVE: \"Explica...\", \"Qué es...\", \"Háblame de...\", \"Historia de...\", \"Tutorial de...\".\n   - Ejemplo: \"Mecánica básica\", \"Qué es un motor V8\", \"Historia de la F1\".\n   - Acción: NO buscar noticias, usar conocimiento interno.\n\nSALIDA JSON (Responde ÚNICAMENTE con este JSON):\n{\n  \"ruta\": \"DEFAULT\" | \"SPECIFIC_NEWS\" | \"TOPIC_ONLY\",\n  \"query\": \"Escribe aquí la búsqueda optimizada para Google/Perplexity (ej: 'Últimas noticias sobre mecánica 2024')\"\n}"
+            },
+            {
+              "content": "={{ $('Recibir Orden').item.json.tema_personalizado ? $('Recibir Orden').item.json.tema_personalizado : \"DEFAULT\" }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "textFormat": {
+            "textOptions": {
+              "type": "json_object"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        176,
+        432
+      ],
+      "id": "03488a2a-37f5-454c-8073-998172ca752e",
+      "name": "Gestor del Switch",
+      "credentials": {
+        "openAiApi": {
+          "id": "KsAMT7dv6a3lYtX2",
+          "name": "Personal_GPT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Accedemos al objeto JSON que entra\nconst item = $input.item.json;\n\n// 2. Definimos valores por defecto por seguridad\n// (Si no encuentra nada, asumirá que es una noticia random)\nlet rutaFinal = \"DEFAULT\";\nlet queryFinal = \"\";\n\ntry {\n  // 3. Accedemos a la ruta exacta que has identificado.\n  // Usamos '?.' (optional chaining) para evitar errores rojos si falta algún dato intermedio.\n  const data = item.output?.[0]?.content?.[0]?.text;\n\n  // 4. Si encontramos datos en esa ubicación, los asignamos\n  if (data) {\n    // Si data es un objeto (que lo es en tu caso), extraemos las propiedades\n    if (typeof data === 'object') {\n      if (data.ruta) rutaFinal = data.ruta;\n      if (data.query) queryFinal = data.query;\n    } \n  }\n  \n} catch (error) {\n  // Si algo falla, no rompemos el flujo, simplemente usamos los valores por defecto\n  console.log(\"No se pudo extraer la ruta, usando DEFAULT\");\n}\n\n// 5. Devolvemos el resultado limpio y separado\nreturn {\n  json: {\n    ruta: rutaFinal,\n    query: queryFinal\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        528,
+        432
+      ],
+      "id": "8c8f0246-7faf-4677-8640-c580e4b00dd6",
+      "name": "Limpiador"
+    },
+    {
+      "parameters": {
+        "messages": {
+          "message": [
+            {
+              "content": "=Actúa como un Analista Técnico Senior y Buscador de Tendencias (Tech Hunter).\n\nTU MISIÓN:\n1. Rastrea internet en busca de la noticia más crítica de las últimas 24 horas en: Tecnología, Ingeniería de Software o Ciberseguridad.\n2. Filtra el ruido: Ignora rumores vagos o listas de \"Top 10\". Elige UNA SOLA noticia ganadora.\n3. Analízala a fondo para extraer datos técnicos.\n\nFORMATO DE SALIDA (CRÍTICO):\nTu respuesta debe ser ÚNICAMENTE un objeto JSON válido.\nNO escribas introducciones, ni explicaciones, ni uses bloques de código markdown (```json). Solo el JSON puro.\n\nUsa EXACTAMENTE esta estructura:\n\n{\n  \"topic\": \"Titular de la noticia (debe ser técnico y atractivo)\",\n  \"target_audience\": \"A quién va dirigido (ej: Senior Backend Devs, CISO, DevOps)\",\n  \"key_points\": [\n    \"Punto 1: Hecho principal (Qué ha pasado exactamente).\",\n    \"Punto 2: Datos técnicos (Versiones, nombres de vulnerabilidades, specs de hardware).\",\n    \"Punto 3: Contexto de la industria (Por qué importa ahora).\",\n    \"Punto 4: Impacto real (A quién beneficia o perjudica).\",\n    \"Punto 5: Fuente de la noticia y fecha.\"\n  ],\n  \"visual_idea\": \"Prompt detallado para generar una imagen que represente la noticia (estilo editorial, realista o 3D, sin texto).\",\n  \"type\": \"NEWS_TRENDING\"\n}",
+              "role": "system"
+            },
+            {
+              "content": "={{ $('Switch').item.json.query }}"
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.perplexity",
+      "typeVersion": 1,
+      "position": [
+        2176,
+        -128
+      ],
+      "id": "e406e3dc-ef1a-40c7-9f9c-397d79cb4956",
+      "name": "Buscador de noticia",
+      "credentials": {
+        "perplexityApi": {
+          "id": "4xhjAwUZUONaWFFG",
+          "name": "Perplexity account - Automa.my"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Accedemos a la respuesta cruda de Perplexity\nconst item = $input.item.json;\n\n// 2. Buscamos el texto donde se esconde el JSON (Ruta basada en tu log)\nlet rawContent = \"\";\n\nif (item.choices && item.choices[0] && item.choices[0].message) {\n    rawContent = item.choices[0].message.content;\n} else if (item.content) {\n    rawContent = item.content;\n}\n\n// 3. Limpiamos y convertimos a Objeto (Quitamos las comillas markdown)\nlet cleanJsonString = rawContent\n    .replace(/```json/g, '')\n    .replace(/```/g, '')\n    .trim();\n\nlet finalData = {};\n\ntry {\n    finalData = JSON.parse(cleanJsonString);\n\n    // --- AQUÍ ESTÁ EL CAMBIO ---\n    // 4. Eliminamos los campos que NO quieres\n    delete finalData.visual_idea;\n    delete finalData.type;\n    // ---------------------------\n\n} catch (error) {\n    console.log(\"Error al parsear:\", error);\n    finalData = { error: \"Error de formato\", raw: rawContent };\n}\n\n// 5. Devolvemos el objeto limpio y filtrado\nreturn {\n    json: finalData\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2496,
+        -128
+      ],
+      "id": "5570fd9d-403b-418f-b85e-c3c7964b63d8",
+      "name": "Limpiador - SPECIFIC_NEWS"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "created_at": "={{ $now }}",
+            "media_type": "IMAGEN",
+            "id": "={{ $('Extraer Linea - SPECIFIC_NEWS').item.json.id }}",
+            "topic": "={{ $json.topic }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "draft_text",
+              "displayName": "draft_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_image_prompt",
+              "displayName": "current_image_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_url",
+              "displayName": "media_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "feedback_history",
+              "displayName": "feedback_history",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2832,
+        -128
+      ],
+      "id": "41b983b1-b701-47ab-9e4a-693199acb6c4",
+      "name": "Actualizador - SPECIFIC_NEWS",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "created_at": "={{ $now }}",
+            "media_type": "=IMAGEN",
+            "id": "={{ $('Extraer Linea - TOPIC_ONLY').item.json.id }}",
+            "topic": "={{ $json.output[0].content[0].text.topic }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "draft_text",
+              "displayName": "draft_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_image_prompt",
+              "displayName": "current_image_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_url",
+              "displayName": "media_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2704,
+        1008
+      ],
+      "id": "9beeac29-d328-4a8c-9cc9-bcc1b7432dfd",
+      "name": "Actualizador - TOPIC_ONLY",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Eres un Arquitecto de Software Senior y Divulgador Técnico.\nEl usuario te dará un TEMA o CONCEPTO TÉCNICO simple.\n\nTU MISIÓN:\nDesglosar ese tema en puntos clave técnicos y profundos para que un redactor pueda crear un post de LinkedIn. No busques en internet, usa tu base de conocimiento.\n\nFORMATO DE SALIDA (JSON ESTRICTO):\nResponde ÚNICAMENTE con este JSON:\n\n{\n  \"topic\": \"Título atractivo y técnico basado en el input\",\n  \"target_audience\": \"A quién le interesa (ej: Junior Devs, CTOs, Data Scientists)\",\n  \"key_points\": [\n    \"Punto 1: Concepto teórico o definición técnica precisa.\",\n    \"Punto 2: Un ejemplo de uso real o buena práctica.\",\n    \"Punto 3: Un error común (anti-patrón) relacionado con este tema.\",\n    \"Punto 4: Una herramienta o librería popular relacionada.\",\n    \"Punto 5: Beneficio directo para el desarrollador o la empresa.\"\n  ],\n  \"visual_idea\": \"Descripción para una imagen técnica abstracta o diagrama.\",\n  \"type\": \"EDUCATIONAL_TOPIC\"\n}"
+            },
+            {
+              "content": "={{ $('Switch').item.json.query }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "textFormat": {
+            "textOptions": {
+              "type": "json_object"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        2272,
+        1008
+      ],
+      "id": "e95a298b-229d-4191-ab0a-b23da4df78be",
+      "name": "Tema personalizado",
+      "credentials": {
+        "openAiApi": {
+          "id": "KsAMT7dv6a3lYtX2",
+          "name": "Personal_GPT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "status": "ARCHIVED"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "draft_text",
+              "displayName": "draft_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_image_prompt",
+              "displayName": "current_image_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_url",
+              "displayName": "media_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "feedback_history",
+              "displayName": "feedback_history",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1792,
+        208
+      ],
+      "id": "101ccd6b-8518-4cce-bc4e-eba8c8ccefa8",
+      "name": "Actulizador Basura",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "PENDING"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2000,
+        1008
+      ],
+      "id": "811185dc-aab1-42ed-b986-3bc1bf95ba5a",
+      "name": "Extraer Linea - TOPIC_ONLY",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "PENDING"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1840,
+        -128
+      ],
+      "id": "5be0fb70-34ac-4221-acc7-fa32fa630fb8",
+      "name": "Extraer Linea - SPECIFIC_NEWS",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "PENDING"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1328,
+        432
+      ],
+      "id": "c0dfb560-94cb-40bd-aba3-d54a2c6e43d1",
+      "name": "Extraer linea",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "DONE"
+            },
+            {
+              "lookupColumn": "status",
+              "lookupValue": "ARCHIVED"
+            }
+          ]
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2032,
+        448
+      ],
+      "id": "99eb1add-852a-4a58-bba0-5635ad2fedff",
+      "name": "Extraer Historial",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Union').item.json.id }}",
+            "draft_text": "={{ $('Redactor de noticias').item.json.output[0].content[0].text }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "draft_text",
+              "displayName": "draft_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "current_image_prompt",
+              "displayName": "current_image_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_url",
+              "displayName": "media_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4608,
+        448
+      ],
+      "id": "fd15a3e7-b5c4-4967-8ad6-1be154675de8",
+      "name": "Actualizador",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. INTENTAR RECUPERAR EL ID\nlet idFinal = $input.item.json.id; \nif (!idFinal) {\n    try {\n        // idFinal = $('Extraer linea').first().json.id; \n    } catch (e) { idFinal = \"ID_NO_ENCONTRADO\"; }\n}\n\n// 2. DEFINIR LAS FUENTES DE DATOS POSIBLES\nlet sourceData = {};\nlet origen = \"\";\n\n// -----------------------------------------------------------\n// A. INTENTO 1: Perplexity (Code in JavaScript2)\n// -----------------------------------------------------------\ntry {\n    const pData = $('Limpiador - SPECIFIC_NEWS').first().json;\n    if (pData.topic) { \n        sourceData = pData; \n        origen = \"Perplexity\"; \n    }\n} catch (e) {}\n\n// -----------------------------------------------------------\n// B. INTENTO 2: RAMA TOPIC ONLY (Message a model) - ACTUALIZADO\n// -----------------------------------------------------------\nif (!sourceData.topic) {\n    try {\n        // Accedemos EXACTAMENTE a la ruta que me has dado\n        // Usamos '?.' (optional chaining) por si algún campo falla, para que no explote en rojo\n        const modelData = $('Tema personalizado').first().json.output?.[0]?.content?.[0]?.text;\n\n        if (modelData && (modelData.topic || modelData.key_points)) {\n            sourceData = modelData;\n            origen = \"Message a model (Directo)\";\n        }\n    } catch (e) {\n        console.log(\"Error leyendo Message a model: \" + e.message);\n    }\n}\n\n// -----------------------------------------------------------\n// C. INTENTO 3: Buscador Noticias (Fallback)\n// -----------------------------------------------------------\nif (!sourceData.topic) {\n    try {\n        const rawOutput = $('Buscador de noticias').first().json.output;\n        const deepData = rawOutput?.[0]?.content?.[0]?.text;\n        \n        if (deepData && deepData.topic) {\n            sourceData = deepData;\n            origen = \"Buscador\";\n        } else {\n            sourceData = { \n                topic: \"Fallback Raw\", \n                key_points: JSON.stringify(rawOutput) \n            };\n            origen = \"Raw\";\n        }\n    } catch (e) {}\n}\n\n// 3. FORMATEAR SALIDA COMÚN (Limpieza de arrays)\nlet content = \"\";\n\n// A veces key_points es un Array, a veces texto. Esto lo unifica.\nif (sourceData.key_points) {\n    if (Array.isArray(sourceData.key_points)) {\n        content = sourceData.key_points.join('\\n\\n');\n    } else {\n        content = sourceData.key_points;\n    }\n} else {\n    content = \"Sin contenido extraído.\";\n}\n\n// 4. RETURN FINAL\nreturn {\n    json: {\n        id: idFinal,\n        topic: sourceData.topic || \"Tema Desconocido\",\n        target_audience: sourceData.target_audience || \"General\",\n        final_content: content, // Esto es lo que leerá el Agente Redactor\n        origen_datos: origen\n    }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3936,
+        448
+      ],
+      "id": "7560bffd-4545-4d34-a73d-0f6488a25769",
+      "name": "Union"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Capturamos el ID externo UNA sola vez\nlet externalId = null;\ntry {\n  externalId = $('Union').first().json.id;\n} catch (e) {\n  console.log(\"No se pudo obtener el ID externo\");\n}\n\nfor (const item of items) {\n  try {\n    const rawText = item.json.output;\n\n    if (!rawText) {\n      continue;\n    }\n\n    // 2. Limpiar markdown\n    const cleanedText = rawText\n      .replace(/```json/gi, \"\")\n      .replace(/```/g, \"\")\n      .trim();\n\n    // 3. Parsear JSON\n    const jsonObject = JSON.parse(cleanedText);\n\n    // 4. Inyectar ID externo\n    if (externalId) {\n      jsonObject.id = externalId;\n    }\n\n    // 5. Reemplazo total\n    item.json = jsonObject;\n\n  } catch (error) {\n    console.log(\"Error procesando JSON:\", error.message);\n\n    item.json = {\n      error: true,\n      raw_output: item.json.output,\n      id: externalId\n    };\n  }\n}\n\nreturn items;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5232,
+        448
+      ],
+      "id": "8ce4e32a-2bf4-4052-ac94-55f430683504",
+      "name": "Limpiador 2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Recuperamos los datos del nodo \"Code in JavaScript\"\n// Usamos .first() para asegurarnos de coger el dato, o un objeto vacío si falla\nlet previousData = {};\ntry {\n    previousData = $('Limpiador 2').first().json;\n} catch (e) {\n    console.log(\"No se encontraron datos en 'Code in JavaScript'\");\n}\n\n// 2. Recuperamos el enlace de la entrada actual (del nodo Google Drive)\nconst currentInput = $input.item.json;\n\n// 3. Devolvemos el objeto unificado\nreturn {\n    json: {\n        // ID recuperado del nodo anterior\n        id: $('Limpiador 2').first().json.id || \"ID_NO_ENCONTRADO\",\n        \n        // Prompt recuperado del nodo anterior\n        final_prompt: previousData.final_prompt || \"SIN_PROMPT\",\n        \n        // Enlace de la imagen recuperado de la entrada actual\n        image_link: currentInput.webViewLink || \"LINK_NO_DISPONIBLE\"\n    }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5920,
+        448
+      ],
+      "id": "b53a1f45-7dc7-4121-a09b-fba0b4b5cd15",
+      "name": "Limpiador Final"
+    },
+    {
+      "parameters": {
+        "name": "=imagen_{{ $now }}.png",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "18Wf_SQEP82VV9gOEIOMZXeAczZ_Uzkn_",
+          "mode": "list",
+          "cachedResultName": "Personal-Linkedin",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/18Wf_SQEP82VV9gOEIOMZXeAczZ_Uzkn_"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        5712,
+        448
+      ],
+      "id": "42be1fc7-08e1-46bf-a67b-e7d054b00cab",
+      "name": "Subida Archivo",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "UymR5RYd7bVXlik6",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "media_url": "={{ $json.image_link }}",
+            "current_image_prompt": "={{ $json.final_prompt }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "draft_text",
+              "displayName": "draft_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_image_prompt",
+              "displayName": "current_image_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "media_url",
+              "displayName": "media_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "feedback_history",
+              "displayName": "feedback_history",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        6144,
+        448
+      ],
+      "id": "5d4f4be5-95cb-4c4d-9079-1a8983e6521c",
+      "name": "Actualizador Final",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "id",
+              "lookupValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        6352,
+        448
+      ],
+      "id": "4de39d1a-a8d9-4129-a5c7-f24f8926814a",
+      "name": "Extracción Final",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "=*-🚀 POST LISTO PARA LINKEDIN-*\n\n-------------------\n*📝 TEXTO DEL POST*\n\n{{ $json.draft_text }}\n\n\n-------------------\n*🖼️ IMAGEN DEL POST*\n[👉 Ver imagen]({{ $json.media_url }})",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        6576,
+        448
+      ],
+      "id": "97e0c324-9a15-4c56-9f92-b614f4159153",
+      "name": "Resultado",
+      "webhookId": "f20897a0-4fdc-4a92-9bc3-6b6068bb1f22",
+      "credentials": {
+        "telegramApi": {
+          "id": "sYXmQach0fDdJf2T",
+          "name": "Guillermo_Personal_LinkedIn"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Recibir Orden",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Actulizador Basura",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extraer Historial",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nueva Fila": {
+      "main": [
+        [
+          {
+            "node": "Union",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Buscador de noticias",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recibir Orden": {
+      "main": [
+        [
+          {
+            "node": "Gestor del Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Extraer Linea - SPECIFIC_NEWS",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extraer linea",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extraer Linea - TOPIC_ONLY",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Recibir Orden",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscador de noticias": {
+      "main": [
+        [
+          {
+            "node": "Nueva Fila",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redactor de noticias": {
+      "main": [
+        [
+          {
+            "node": "Actualizador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generador de prompts": {
+      "main": [
+        [
+          {
+            "node": "Limpiador 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generador de imagen": {
+      "main": [
+        [
+          {
+            "node": "Subida Archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generador de prompts",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gestor del Switch": {
+      "main": [
+        [
+          {
+            "node": "Limpiador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiador": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscador de noticia": {
+      "main": [
+        [
+          {
+            "node": "Limpiador - SPECIFIC_NEWS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiador - SPECIFIC_NEWS": {
+      "main": [
+        [
+          {
+            "node": "Actualizador - SPECIFIC_NEWS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizador - SPECIFIC_NEWS": {
+      "main": [
+        [
+          {
+            "node": "Union",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizador - TOPIC_ONLY": {
+      "main": [
+        [
+          {
+            "node": "Union",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tema personalizado": {
+      "main": [
+        [
+          {
+            "node": "Actualizador - TOPIC_ONLY",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actulizador Basura": {
+      "main": [
+        [
+          {
+            "node": "Extraer Historial",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer Linea - TOPIC_ONLY": {
+      "main": [
+        [
+          {
+            "node": "Tema personalizado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer Linea - SPECIFIC_NEWS": {
+      "main": [
+        [
+          {
+            "node": "Buscador de noticia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer linea": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer Historial": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizador": {
+      "main": [
+        [
+          {
+            "node": "Generador de prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Union": {
+      "main": [
+        [
+          {
+            "node": "Redactor de noticias",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiador 2": {
+      "main": [
+        [
+          {
+            "node": "Generador de imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiador Final": {
+      "main": [
+        [
+          {
+            "node": "Actualizador Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Subida Archivo": {
+      "main": [
+        [
+          {
+            "node": "Limpiador Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizador Final": {
+      "main": [
+        [
+          {
+            "node": "Extracción Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extracción Final": {
+      "main": [
+        [
+          {
+            "node": "Resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "timeSavedMode": "fixed",
+    "timezone": "Europe/Madrid",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "9fca270b-3993-4f35-97be-9cf6c71324a7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e14d10b7ca64b2f8fb03497664af554029db34b73a341d4b29cefba3eb8cbb37"
+  },
+  "id": "VyZ2vtpkfMemuyGP",
+  "tags": []
+}
