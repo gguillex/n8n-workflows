@@ -60,17 +60,17 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -179,8 +179,8 @@
       "name": "Nueva Fila",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -380,8 +380,8 @@
       "name": "Buscador de noticias",
       "credentials": {
         "openAiApi": {
-          "id": "KsAMT7dv6a3lYtX2",
-          "name": "Personal_GPT"
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL_NAME"
         }
       }
     },
@@ -417,8 +417,8 @@
       "name": "Redactor de noticias",
       "credentials": {
         "openAiApi": {
-          "id": "KsAMT7dv6a3lYtX2",
-          "name": "Personal_GPT"
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL_NAME"
         }
       }
     },
@@ -463,8 +463,8 @@
       "name": "Generador de imagen",
       "credentials": {
         "googlePalmApi": {
-          "id": "fFNwmmVwT0Ba8Veo",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "YOUR_GOOGLE_GEMINI_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_GEMINI_CREDENTIAL_NAME"
         }
       }
     },
@@ -483,8 +483,8 @@
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
-          "id": "fFNwmmVwT0Ba8Veo",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "YOUR_GOOGLE_GEMINI_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_GEMINI_CREDENTIAL_NAME"
         }
       }
     },
@@ -526,8 +526,8 @@
       "name": "Gestor del Switch",
       "credentials": {
         "openAiApi": {
-          "id": "KsAMT7dv6a3lYtX2",
-          "name": "Personal_GPT"
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL_NAME"
         }
       }
     },
@@ -570,8 +570,8 @@
       "name": "Buscador de noticia",
       "credentials": {
         "perplexityApi": {
-          "id": "4xhjAwUZUONaWFFG",
-          "name": "Perplexity account - Automa.my"
+          "id": "YOUR_PERPLEXITY_CREDENTIAL_ID",
+          "name": "YOUR_PERPLEXITY_CREDENTIAL_NAME"
         }
       }
     },
@@ -593,17 +593,17 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -733,8 +733,8 @@
       "name": "Actualizador - SPECIFIC_NEWS",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -743,17 +743,17 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -873,8 +873,8 @@
       "name": "Actualizador - TOPIC_ONLY",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -916,8 +916,8 @@
       "name": "Tema personalizado",
       "credentials": {
         "openAiApi": {
-          "id": "KsAMT7dv6a3lYtX2",
-          "name": "Personal_GPT"
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL_NAME"
         }
       }
     },
@@ -926,17 +926,17 @@
         "operation": "appendOrUpdate",
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1053,8 +1053,8 @@
       "name": "Actulizador Basura",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1062,17 +1062,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "filtersUI": {
           "values": [
@@ -1095,8 +1095,8 @@
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1104,17 +1104,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "filtersUI": {
           "values": [
@@ -1137,8 +1137,8 @@
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1146,17 +1146,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "filtersUI": {
           "values": [
@@ -1179,8 +1179,8 @@
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1188,17 +1188,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "filtersUI": {
           "values": [
@@ -1226,8 +1226,8 @@
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1236,17 +1236,17 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1364,8 +1364,8 @@
       "name": "Actualizador",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1418,10 +1418,10 @@
         },
         "folderId": {
           "__rl": true,
-          "value": "18Wf_SQEP82VV9gOEIOMZXeAczZ_Uzkn_",
+          "value": "YOUR_GOOGLE_DRIVE_FOLDER_ID",
           "mode": "list",
           "cachedResultName": "Personal-Linkedin",
-          "cachedResultUrl": "https://drive.google.com/drive/folders/18Wf_SQEP82VV9gOEIOMZXeAczZ_Uzkn_"
+          "cachedResultUrl": "https://drive.google.com/drive/folders/YOUR_GOOGLE_DRIVE_FOLDER_ID"
         },
         "options": {}
       },
@@ -1435,8 +1435,8 @@
       "name": "Subida Archivo",
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "UymR5RYd7bVXlik6",
-          "name": "Google Drive account"
+          "id": "YOUR_GOOGLE_DRIVE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1445,17 +1445,17 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1584,8 +1584,8 @@
       "name": "Actualizador Final",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1593,17 +1593,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "value": "YOUR_SPREADSHEET_ID",
           "mode": "list",
           "cachedResultName": "Linkedin V1.2",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 1889392244,
           "mode": "list",
           "cachedResultName": "Publicaciones",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit#gid=1889392244"
         },
         "filtersUI": {
           "values": [
@@ -1625,8 +1625,8 @@
       "name": "Extracción Final",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "acxQYAb1lEzSDaGv",
-          "name": "Personal_Google"
+          "id": "YOUR_GOOGLE_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CREDENTIAL_NAME"
         }
       }
     },
@@ -1648,8 +1648,8 @@
       "webhookId": "f20897a0-4fdc-4a92-9bc3-6b6068bb1f22",
       "credentials": {
         "telegramApi": {
-          "id": "sYXmQach0fDdJf2T",
-          "name": "Guillermo_Personal_LinkedIn"
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL_NAME"
         }
       }
     }
@@ -2038,11 +2038,11 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "9fca270b-3993-4f35-97be-9cf6c71324a7",
+  "versionId": "REPLACE_WITH_YOUR_VERSION_ID",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "e14d10b7ca64b2f8fb03497664af554029db34b73a341d4b29cefba3eb8cbb37"
+    "instanceId": "REPLACE_WITH_YOUR_INSTANCE_ID"
   },
-  "id": "VyZ2vtpkfMemuyGP",
+  "id": "REPLACE_WITH_YOUR_WORKFLOW_ID",
   "tags": []
 }
