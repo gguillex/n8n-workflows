@@ -1,0 +1,1122 @@
+{
+  "name": "Buscador_Negocios",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://places.googleapis.com/v1/places:searchText",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-Goog-Api-Key",
+              "value": "AIzaSyCf4vTHEyd1kNyNXiWQExzfJLwaGIvTmCU"
+            },
+            {
+              "name": "X-Goog-FieldMask",
+              "value": "places.id,places.displayName,places.formattedAddress,places.websiteUri,places.rating,places.userRatingCount"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"textQuery\": \"{{ $json.busqueda }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        160,
+        0
+      ],
+      "id": "9386ac66-6b65-4438-a135-dc55486b5113",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "places",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        400,
+        0
+      ],
+      "id": "306ad780-f61f-4095-8a9c-ef34516ed7a5",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "advanced": true,
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "id",
+              "field2": "Id_place"
+            }
+          ]
+        },
+        "joinMode": "keepNonMatches",
+        "outputDataFrom": "input1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        672,
+        112
+      ],
+      "id": "a77efc7b-8ff3-4926-a0de-91912fbc1f42",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.websiteUri }}",
+        "options": {
+          "allowUnauthorizedCerts": true,
+          "redirect": {
+            "redirect": {}
+          },
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1120,
+        224
+      ],
+      "id": "b6f9219f-4a1d-48fe-8011-1827441efd6e",
+      "name": "Analizador Web",
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput",
+      "notes": "No se encontró url."
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=Analiza el siguiente TEXTO DE LA WEB de un restaurante. Extrae la información técnica y operativa en formato JSON.\n\nTEXTO A ANALIZAR:\n{{ $json.texto_limpio }}\n\nTAREAS DE EXTRACCIÓN:\n\n1. EMAIL (Vital): Prioriza: Reservas > Info > Dueño. Si encuentras varios, elige el más corporativo. Si no hay, busca cadenas tipo \"mailto:\". Si no existe, pon \"null\".\n\n2. TECNOLOGÍA RESERVAS: Detecta el motor exacto.\n   - Busca: \"TheFork\", \"ElTenedor\", \"CoverManager\", \"OpenTable\", \"ResDiary\", \"GloriaFood\".\n   - Si ves un widget de reservas pero no sabes la marca, pon \"Motor Genérico\".\n   - Si el texto incita a llamar (\"Llama al...\", \"Reservas al tel...\"), pon \"Solo Teléfono\".\n\n3. MARKETING DIGITAL:\n   - Busca menciones de \"Política de Cookies\", \"Google Analytics\", \"Facebook Pixel\" o enlaces a agencias de marketing en el footer.\n   - Responde: \"Sí\" (si hay tracking) o \"No\".\n\n4. CANALES SOCIALES Y CHAT (Para vender Agentes IA):\n   - Busca enlaces a: Instagram, Facebook, TikTok.\n   - ¿Tienen botón de WhatsApp o Chat visible?\n   - Responde con el enlace principal de Instagram (si hay) o \"null\".\n\n5. TIPO DE MENÚ (Para vender Inventario):\n   - Busca palabras como: \"Ver Carta\", \"Descargar PDF\", \"Menú QR\", \"Alérgenos\".\n   - Intenta deducir si la carta es extensa.\n   - Responde: \"Digital/QR\", \"PDF\", \"Texto Simple\" o \"No detectado\".\n\nRESPUESTA JSON ESTRICTA (Sin código extra, solo el objeto):\n{\n  \"email\": \"resultado\",\n  \"tecnologia\": \"resultado\",\n  \"marketing\": \"resultado\",\n  \"instagram\": \"resultado\",\n  \"tipo_menu\": \"resultado\"\n}"
+            },
+            {
+              "role": "system",
+              "content": "Eres un auditor tecnológico experto en el sector Horeca (Restauración). Tu trabajo es extraer datos técnicos y operativos de textos web desordenados con precisión quirúrgica."
+            }
+          ]
+        },
+        "simplify": false,
+        "builtInTools": {},
+        "options": {
+          "textFormat": {
+            "textOptions": {
+              "type": "json_object"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1760,
+        208
+      ],
+      "id": "9b64dd26-2f43-41a3-8996-5b17ed146381",
+      "name": "Analizar Web",
+      "credentials": {
+        "openAiApi": {
+          "id": "KsAMT7dv6a3lYtX2",
+          "name": "Personal_GPT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "texto_limpio",
+              "cssSelector": "body"
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true,
+          "cleanUpText": true
+        }
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        1552,
+        208
+      ],
+      "id": "ec766c32-5c2e-4eab-aa8d-c9f8507d757b",
+      "name": "Limpiador HTML"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        880,
+        112
+      ],
+      "id": "cafc1d01-f242-4d55-9e46-230efed6d24e",
+      "name": "Bucle"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8230982b-ced7-4148-9ab3-ec784161cc97",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "1cf4ed4a-0d1b-4ee5-a5f2-e21878201e81",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "null",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2352,
+        464
+      ],
+      "id": "a3a66bd2-b3e0-499c-a230-0a7949d66482",
+      "name": "Condicion"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "dec200be-a717-4e57-a074-31af84c55e81",
+              "leftValue": "={{ $json.data }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "092de678-b353-4340-94fb-c3e67fd5edfb",
+              "leftValue": "={{ $json.data }}",
+              "rightValue": "body",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1344,
+        224
+      ],
+      "id": "9882ed69-f297-4c04-90be-6cf3f810a555",
+      "name": "¿Hay Web?"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU",
+          "mode": "list",
+          "cachedResultName": "Buscador_Negocios",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Prospectos_Murcia",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ $json.nombre }}",
+            "Web": "={{ $json.web }}",
+            "Email_encontrado": "={{ $json.email }}",
+            "Tecnologia": "={{ $json.tecnologia }}",
+            "Marketing": "={{ $json.marketing }}",
+            "Estado": "Pendiente",
+            "Fecha_contacto": "={{ $now.toFormat('yyyy-MM-dd') }}",
+            "Id_place": "={{ $('Bucle').item.json.id }}",
+            "Instagram": "={{ $json.instagram }}",
+            "Tipo_menu": "={{ $json.tipo_menu }}",
+            "Nicho": "={{ $('Ruleta de Negocios').item.json.nicho }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Id_place",
+              "displayName": "Id_place",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nicho",
+              "displayName": "Nicho",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Web",
+              "displayName": "Web",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email_encontrado",
+              "displayName": "Email_encontrado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Instagram",
+              "displayName": "Instagram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tipo_menu",
+              "displayName": "Tipo_menu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tecnologia",
+              "displayName": "Tecnologia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Marketing",
+              "displayName": "Marketing",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email_Prueba",
+              "displayName": "Email_Prueba",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha_contacto",
+              "displayName": "Fecha_contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3120,
+        752
+      ],
+      "id": "3f7582b9-fa4e-4e49-9935-6116cf31301a",
+      "name": "Actualizar con Correo",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU",
+          "mode": "list",
+          "cachedResultName": "Buscador_Negocios",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Prospectos_Murcia",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Id_place": "={{ $('Bucle').item.json.id }}",
+            "Nombre": "={{ $json.nombre }}",
+            "Web": "={{ $json.web }}",
+            "Email_encontrado": "={{ $json.email }}",
+            "Tecnologia": "={{ $json.tecnologia }}",
+            "Marketing": "={{ $json.marketing }}",
+            "Fecha_contacto": "={{ $now.toFormat('yyyy-MM-dd') }}",
+            "Estado": "={{ $json.email && $json.email != 'null' ? 'Pendiente' : 'Sin Email' }}",
+            "Instagram": "={{ $json.instagram }}",
+            "Tipo_menu": "={{ $json.tipo_menu }}",
+            "Nicho": "={{ $('Ruleta de Negocios').item.json.nicho }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Id_place",
+              "displayName": "Id_place",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nicho",
+              "displayName": "Nicho",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Web",
+              "displayName": "Web",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email_encontrado",
+              "displayName": "Email_encontrado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Instagram",
+              "displayName": "Instagram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tipo_menu",
+              "displayName": "Tipo_menu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tecnologia",
+              "displayName": "Tecnologia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Marketing",
+              "displayName": "Marketing",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email_Prueba",
+              "displayName": "Email_Prueba",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha_contacto",
+              "displayName": "Fecha_contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2640,
+        656
+      ],
+      "id": "db47cdae-afb5-450e-962b-f305d213adf8",
+      "name": "Actualizar sin Correo",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d89ecc0b-a79d-415d-a867-0dced229dfbe",
+              "name": "id",
+              "value": "={{ $('Bucle').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "eb2ae3e3-d642-4ad1-9a6d-d70e9451c8ed",
+              "name": "nombre",
+              "value": "={{ $('Bucle').item.json.displayName.text }}",
+              "type": "string"
+            },
+            {
+              "id": "68bdf8ea-c36e-4947-8e35-deafc86f65c8",
+              "name": "web",
+              "value": "={{ $('Bucle').item.json.websiteUri }}",
+              "type": "string"
+            },
+            {
+              "id": "fc7e2836-59d9-4f40-b43f-70479e102a6b",
+              "name": "email",
+              "value": "={{ $json.output[0].content[0].text.email }}",
+              "type": "string"
+            },
+            {
+              "id": "b3516940-d7e4-472c-9a31-bbf631a75b62",
+              "name": "tecnologia",
+              "value": "={{ $json.output[0].content[0].text.tecnologia }}",
+              "type": "string"
+            },
+            {
+              "id": "e33f228c-f13a-4487-ab43-a09204e86927",
+              "name": "marketing",
+              "value": "={{ $json.output[0].content[0].text.marketing }}",
+              "type": "string"
+            },
+            {
+              "id": "21ecbfcf-74c4-4712-91a3-4784acff256f",
+              "name": "instagram",
+              "value": "={{ $json.output[0].content[0].text.instagram }}",
+              "type": "string"
+            },
+            {
+              "id": "cd898b59-1c29-4a71-8493-dced821161d3",
+              "name": "tipo_menu",
+              "value": "={{ $json.output[0].content[0].text.tipo_menu }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2112,
+        208
+      ],
+      "id": "fbdff1d5-463f-470a-9aa0-c7e183ac5ddf",
+      "name": "Datos con Web"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9b831aea-f7ac-4112-ba4b-c8609e532bc7",
+              "name": "id",
+              "value": "={{ $('Bucle').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "d4632bc8-cd66-4fa3-87d1-fc41c70d0ae3",
+              "name": "email",
+              "value": "null",
+              "type": "string"
+            },
+            {
+              "id": "99688aa0-6aac-425d-9ca4-54a9f968b727",
+              "name": "tecnologia",
+              "value": "null",
+              "type": "string"
+            },
+            {
+              "id": "b60dca54-6423-4f06-9d34-f9767b9598de",
+              "name": "marketing",
+              "value": "null",
+              "type": "string"
+            },
+            {
+              "id": "c6ed24f8-e77c-4b27-87b5-e10626b1c74c",
+              "name": "nombre",
+              "value": "={{ $('Bucle').item.json.displayName.text }}",
+              "type": "string"
+            },
+            {
+              "id": "64c86bd5-659c-4a72-abe3-dc8e8d6d31ec",
+              "name": "web",
+              "value": "null",
+              "type": "string"
+            },
+            {
+              "id": "6f48b740-f2c1-4fa7-b8bf-12958b41cb37",
+              "name": "instagram",
+              "value": "null",
+              "type": "string"
+            },
+            {
+              "id": "11d5c76b-fd95-4464-9c1c-3157e2e5460d",
+              "name": "tipo_menu",
+              "value": "null",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1648,
+        464
+      ],
+      "id": "88d9fa19-5f7b-4e5c-857e-023491320fc6",
+      "name": "Datos sin Web"
+    },
+    {
+      "parameters": {
+        "chatId": "6563968635",
+        "text": "={{ $json.mensaje_telegram }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1344,
+        -16
+      ],
+      "id": "1054cf42-036c-42f9-aa4b-8e5b7de30a6b",
+      "name": "Negocios sin Contacto",
+      "webhookId": "df751f98-cf4c-4083-9300-d721b65938ab",
+      "credentials": {
+        "telegramApi": {
+          "id": "sYXmQach0fDdJf2T",
+          "name": "Guillermo_Personal_LinkedIn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Cogemos todos los resultados que ha procesado el bot\nconst resultados = $input.all();\n\nlet listos = [];\nlet descartados = [];\n\n// 2. Clasificamos uno a uno\nfor (const item of resultados) {\n  const datos = item.json;\n  \n  // Verificamos si tiene email válido\n  if (datos.Email_encontrado && datos.Email_encontrado !== 'null' && datos.Email_encontrado !== '') {\n    listos.push(`✅ ${datos.Nombre}`);\n  } else {\n    descartados.push(`❌ ${datos.Nombre}`);\n  }\n}\n\n// 3. Redactamos el mensaje final para Telegram\nconst mensaje = `📊 *REPORTE DE BÚSQUEDA HOY*\\n\\n` +\n                `🎯 *Detectados con Email (${listos.length}):*\\n` +\n                (listos.length > 0 ? listos.join('\\n') : \"Ninguno encontrado\") +\n                `\\n\\n` +\n                `🗑 *Sin Email / Descartados (${descartados.length}):*\\n` +\n                (descartados.length > 0 ? descartados.join('\\n') : \"Ninguno descartado\");\n\n// 4. Devolvemos un solo item con el mensaje\nreturn [{ json: { mensaje_telegram: mensaje } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        -16
+      ],
+      "id": "b3b7ecdc-a707-4de1-b3c5-859f96696b55",
+      "name": "Organizador resultados"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "yREFq5wYbWaX8DzJ",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/yREFq5wYbWaX8DzJ",
+          "cachedResultName": "Redactor_Negocios"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        1552,
+        -16
+      ],
+      "id": "46d44c9c-4184-4f20-8c6f-5a5d0daab0b1",
+      "name": "Llamada a Workflow"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Lista de palabras clave para variar (Añade todas las que quieras)\nconst nichos = [\n  \"Restaurantes\",\n  \"Bares de tapas\",\n  \"Hamburgueserías\",\n  \"Pizzerías\",\n  \"Asador de carne\",\n  \"Restaurante Italiano\",\n  \"Restaurante Japonés\",\n  \"Cafeterías y Brunch\",\n  \"Gastrobar\",\n  \"Marisquería\",\n  \"Comida para llevar\",\n  \"Bocatería\"\n];\n\n// 2. Tu ciudad (Cámbiala si te expandes)\nconst ciudad = \"Murcia\";\n\n// 3. La IA elige uno al azar\nconst nicho_elegido = nichos[Math.floor(Math.random() * nichos.length)];\n\n// 4. Creamos la búsqueda final\nconst busqueda_final = `${nicho_elegido} en ${ciudad}`;\n\n// 5. Enviamos el dato al siguiente nodo\nreturn {\n  json: {\n    busqueda: busqueda_final,\n    nicho: nicho_elegido // Por si quieres guardarlo en el Excel para saber de qué era\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "ac1de5cf-26bc-40b6-a6c8-fa2debe7982a",
+      "name": "Ruleta de Negocios"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                3,
+                1
+              ],
+              "triggerAtHour": 9,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -496,
+        224
+      ],
+      "id": "2127b199-18dd-42b5-ac03-f2771ffb7fc5",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU",
+          "mode": "list",
+          "cachedResultName": "Buscador_Negocios",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Prospectos_Murcia",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-Yw690SKxOgkNkSd4D6z4__eXahdCiL6sl6EZU2vchU/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        400,
+        224
+      ],
+      "id": "48291cd5-a6b5-45e2-b90e-f43a8851096b",
+      "name": "Repetidos?",
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Bucle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analizador Web": {
+      "main": [
+        [
+          {
+            "node": "¿Hay Web?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analizar Web": {
+      "main": [
+        [
+          {
+            "node": "Datos con Web",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiador HTML": {
+      "main": [
+        [
+          {
+            "node": "Analizar Web",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bucle": {
+      "main": [
+        [
+          {
+            "node": "Organizador resultados",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Analizador Web",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Condicion": {
+      "main": [
+        [
+          {
+            "node": "Actualizar con Correo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Actualizar sin Correo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Hay Web?": {
+      "main": [
+        [
+          {
+            "node": "Limpiador HTML",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Datos sin Web",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar con Correo": {
+      "main": [
+        [
+          {
+            "node": "Bucle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar sin Correo": {
+      "main": [
+        [
+          {
+            "node": "Bucle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos con Web": {
+      "main": [
+        [
+          {
+            "node": "Condicion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos sin Web": {
+      "main": [
+        [
+          {
+            "node": "Condicion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Negocios sin Contacto": {
+      "main": [
+        [
+          {
+            "node": "Llamada a Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Organizador resultados": {
+      "main": [
+        [
+          {
+            "node": "Negocios sin Contacto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ruleta de Negocios": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Repetidos?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ruleta de Negocios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Repetidos?": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "timezone": "Europe/Madrid"
+  },
+  "versionId": "e53a6ef7-181b-4f46-a894-5471acc90281",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e14d10b7ca64b2f8fb03497664af554029db34b73a341d4b29cefba3eb8cbb37"
+  },
+  "id": "al13dP4otlErCJum",
+  "tags": []
+}
