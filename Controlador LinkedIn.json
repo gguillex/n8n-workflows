@@ -1,0 +1,1506 @@
+{
+  "name": "Controlador LinkedIn",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -736,
+        -128
+      ],
+      "id": "1773a2fc-bdaf-4a68-88aa-11f4a715d60b",
+      "name": "Telegram Trigger",
+      "webhookId": "0d747e28-82d6-47c4-a184-1217a64599f3",
+      "credentials": {
+        "telegramApi": {
+          "id": "sYXmQach0fDdJf2T",
+          "name": "Guillermo_Personal_LinkedIn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -448,
+        96
+      ],
+      "id": "80a278ca-bff5-45e3-b6e5-1175a46e6937",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "KsAMT7dv6a3lYtX2",
+          "name": "Personal_GPT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -304,
+        96
+      ],
+      "id": "0fc76cb4-64c9-4bb0-8223-3b0ad1735660",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "EDIT_IMAGE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "4d26f4c9-57e5-4683-bc48-69434dcf284f"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "747336f9-4e36-47c8-a615-131e1669affc",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "EDIT_TEXT",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "e63c4dd9-c55e-4819-9f2e-2586fb656adb",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "NEW_TOPIC",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "8261c645-cf7a-45cd-b7f3-cd4fa61d3535",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "PUBLISH",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c9665a28-1e36-4812-89ba-ff3ec211d92f",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "CHAT",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        448,
+        -176
+      ],
+      "id": "c3f581c1-2942-41eb-8046-6511d5b261d0",
+      "name": "Switch",
+      "alwaysOutputData": false,
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1296,
+        1152
+      ],
+      "id": "f9ba46c2-78db-4f72-aa6e-32a4457953d9",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "KsAMT7dv6a3lYtX2",
+          "name": "Personal_GPT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1456,
+        1184
+      ],
+      "id": "5e77e702-27cb-494c-862f-253f6691b8ff",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "VyZ2vtpkfMemuyGP",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/VyZ2vtpkfMemuyGP",
+          "cachedResultName": "Linkedin V1.2"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        1360,
+        -128
+      ],
+      "id": "bb0d8e56-7fe6-4757-b40b-067184576810",
+      "name": "Call 'Linkedin V1.2'"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c6156f7e-5412-4a6b-83b1-c16d7af7f0eb",
+              "leftValue": "={{ $json.publish_mode }}",
+              "rightValue": "WITH_IMAGE",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1360,
+        416
+      ],
+      "id": "39252447-6290-4353-94fd-7df0c1e9a249",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=CONTEXTO ACTUAL DEL POST:\n- Título: {{ $json.topic }}\n- Texto: {{ $json.draft_text }}\n- Prompt visual: {{ $json.current_image_prompt }}\n\nINPUT DEL USUARIO:\n\"{{ $node[\"Telegram Trigger\"].json[\"message\"][\"text\"] }}\"\n\nAnaliza el contexto y el input, y genera el JSON de decisión.",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "Eres el Director Editorial Inteligente. Tu misión es analizar la entrada del usuario y el contexto actual para decidir la siguiente acción.\n\nRecibes:\n1. CONTEXTO DEL POST (Título, Texto, Imagen).\n2. INPUT DEL USUARIO.\n\nREGLAS DE DECISIÓN (Sigue este orden de prioridad estricto):\n\nPRIORIDAD 0 (ESTADO INICIAL - CRÍTICO):\n- Si el Título o Texto en el contexto son \"[undefined]\" o están vacíos:\n  - EXCEPCIÓN: Si el usuario pide explícitamente \"Algo random\", \"Aleatorio\", \"Sorpréndeme\" algo que indique que quiere una nueva publicacion -> Salta a PRIORIDAD 2 (NEW_TOPIC).\n  - Si NO pide random -> Acción: \"CHAT\".\n  - Refined_instruction: \"No hay ninguna publicación activa. ¿Sobre qué tema quieres escribir hoy? (Puedes darme una noticia, un tema técnico o algo random)\".\n\nPRIORIDAD 1 (INTERACCIÓN Y VERIFICACIÓN):\n- Si el usuario dice \"Publicar\", \"Publicala\", \"Lánzalo\" (SIN especificar formato):\n  - Acción: \"CHAT\".\n  - Refined_instruction: \"Entendido. ¿Prefieres publicarlo con la imagen adjunta o solo texto?\"\n- Si el usuario pide \"nuevo post\" o \"cambiar tema\" PERO NO dice sobre qué (ni dice \"random\"): Acción = \"CHAT\".\n- Si el usuario pide un cambio vago (\"No me gusta\", \"Cámbialo\"): Acción = \"CHAT\".\n- Si el usuario saluda o habla de cosas no relacionadas: Acción = \"CHAT\".\n\nPRIORIDAD 2 (ACCIÓN TÉCNICA):\n- Si hay contexto y el usuario da instrucciones claras de cambio (\"Cambia la foto por un perro\", \"Resume el texto\"): Acción = \"EDIT_IMAGE\" o \"EDIT_TEXT\".\n- Si el usuario da un tema nuevo claro (\"Quiero un post sobre React\"): Acción = \"NEW_TOPIC\".\n- Si el usuario pide un TEMA ALEATORIO (\"Haz una random\", \"Sorpréndeme\", \"Cualquier cosa de tech\"):\n  - Acción: \"NEW_TOPIC\".\n  - Refined_instruction: \"Generate a new post about a RANDOM trending technical topic (e.g., AI, DevOps, Coding Best Practices).\"\n- Si el usuario ESPECIFICA el formato (\"Publicar con imagen\", \"Publicar solo texto\", \"Sí, con imagen\", \"Sí, solo texto\"): Acción = \"PUBLISH\".\n\nINSTRUCCIONES PARA 'refined_instruction':\n- CASO CHAT: Escribe la respuesta directa y cordial que leerá el usuario.\n- CASO EDIT/NEW: Escribe el prompt técnico optimizado.\n- CASO PUBLISH: Escribe \"Iniciando proceso de publicación...\".\n\nSALIDA OBLIGATORIA (JSON PURO):\n{\n  \"action\": \"EDIT_IMAGE\" | \"EDIT_TEXT\" | \"NEW_TOPIC\" | \"PUBLISH\" | \"CHAT\",\n  \"publish_mode\": \"WITH_IMAGE\" | \"TEXT_ONLY\" | null,\n  \"Instruccion\": \"Input original del usuario\",\n  \"refined_instruction\": \"Tu respuesta al usuario (si es CHAT) o el prompt técnico (si es ACCIÓN)\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -320,
+        -128
+      ],
+      "id": "8957bdb0-d971-477e-b27b-cb8955b95e7f",
+      "name": "Gestor del Switch"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "PENDING"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -528,
+        -128
+      ],
+      "id": "40d7bad1-1c1f-48dc-96fe-6e00ed8293f9",
+      "name": "Publicación pendiente",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Este código limpia el JSON si la IA lo envía con bloques de código Markdown\nlet rawData = $input.first().json.output; // O el nombre de la variable donde esté el texto sucio\n\n// 1. Limpiamos las etiquetas de Markdown y espacios en blanco\nlet cleanData = rawData.replace(/```json/g, \"\").replace(/```/g, \"\").trim();\n\ntry {\n  // 2. Parseamos el texto para convertirlo en un objeto JSON real\n  let jsonObject = JSON.parse(cleanData);\n  \n  // 3. Devolvemos el objeto para que n8n lo reconozca campo por campo\n  return jsonObject;\n} catch (error) {\n  // En caso de que no sea un JSON válido, devolvemos un error manejable\n  return {\n    action: \"CHAT\",\n    refined_instruction: \"Error al procesar la respuesta de la IA. Por favor, repite tu instrucción.\"\n  };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        32,
+        -128
+      ],
+      "id": "98970b04-acd5-44ce-9806-34f3d1c5fea9",
+      "name": "Limpiador"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Publicación pendiente').item.json.media_url }}",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1376,
+        -928
+      ],
+      "id": "90da5a2a-6d48-4f01-8286-a653f7417a1a",
+      "name": "Descargador",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "UymR5RYd7bVXlik6",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "edit",
+        "prompt": "={{ $('Limpiador').item.json.refined_instruction }}",
+        "images": {
+          "values": [
+            {}
+          ]
+        },
+        "size": "1536x1024",
+        "quality": "high",
+        "options": {
+          "inputFidelity": "high"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1616,
+        -928
+      ],
+      "id": "687efe68-35ef-48db-8a83-7bbd87dfd63e",
+      "name": "Editor de imagen",
+      "credentials": {
+        "openAiApi": {
+          "id": "KsAMT7dv6a3lYtX2",
+          "name": "Personal_GPT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Publicación pendiente').item.json.media_url }}",
+          "mode": "url"
+        },
+        "changeFileContent": true,
+        "newUpdatedFileName": "=imagen_{{ $now }}.png",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1824,
+        -928
+      ],
+      "id": "212e08f5-e70c-45ec-b112-4a02583a5b9a",
+      "name": "Actualizador",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "UymR5RYd7bVXlik6",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=Eres un Editor Senior de LinkedIn especializado en tecnología. Tu misión es modificar un borrador existente siguiendo una instrucción específica, manteniendo el valor técnico y el formato original.\n\nDATOS DEL POST ACTUAL:\n- Tema: {{ $('Publicación pendiente').item.json.topic }}\n- Texto actual: {{ $('Publicación pendiente').item.json.draft_text }}\n\nREGLAS DE ORO:\n1. Aplica el cambio solicitado de forma natural.\n2. Si el usuario pide cambiar el tono (ej. \"hazlo más divertido\"), reescribe el post manteniendo los conceptos técnicos.\n3. Si el usuario pide cambiar una palabra específica, hazlo y ajusta la gramática de la frase si es necesario.\n4. Devuelve ÚNICAMENTE el texto final del post. Sin introducciones como \"Aquí tienes el texto\" ni despedidas."
+            },
+            {
+              "content": "={{ $json.refined_instruction }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1376,
+        -560
+      ],
+      "id": "8d25c723-1227-452f-8360-b736cb2faefd",
+      "name": "Redactor 2.0",
+      "credentials": {
+        "openAiApi": {
+          "id": "KsAMT7dv6a3lYtX2",
+          "name": "Personal_GPT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "PENDING",
+            "draft_text": "={{ $json.output[0].content[0].text }}"
+          },
+          "matchingColumns": [
+            "status"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "draft_text",
+              "displayName": "draft_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "current_image_prompt",
+              "displayName": "current_image_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_url",
+              "displayName": "media_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1728,
+        -560
+      ],
+      "id": "5f53b0d0-9763-4643-84ea-e810485e417f",
+      "name": "Actualizador Texto_final",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=*🎨 ¡Imagen editada y actualizada!*\n\nHe guardado la nueva versión en tu Drive y he actualizado la base de datos.   Puedes ver el resultado aquí: [{{ $('Publicación pendiente').item.json.media_url }}]  \n\n¿Te gusta cómo ha quedado o quieres retocar algo más?",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2032,
+        -928
+      ],
+      "id": "927c9367-06be-4f38-9eba-435a1dc7ce81",
+      "name": "Resultado Imagen_final",
+      "webhookId": "6ef7b282-8c71-41bb-a83c-8c93f9afea62",
+      "credentials": {
+        "telegramApi": {
+          "id": "sYXmQach0fDdJf2T",
+          "name": "Guillermo_Personal_LinkedIn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=6563968635",
+        "text": "=*📝 ¡Texto actualizado! Así ha quedado la nueva versión:*\n\n{{ $json.draft_text }}\n\n¿Te gusta este enfoque o quieres retocar algo más?",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1936,
+        -560
+      ],
+      "id": "25bbde11-daef-4bdb-91da-06ac33d1c6db",
+      "name": "Resultado Texto_final",
+      "webhookId": "6ef7b282-8c71-41bb-a83c-8c93f9afea62",
+      "credentials": {
+        "telegramApi": {
+          "id": "sYXmQach0fDdJf2T",
+          "name": "Guillermo_Personal_LinkedIn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=El usuario dice: \"{{ $('Telegram Trigger').item.json.message.text }}\"\nInterpretación previa: \"{{ $json.refined_instruction }}\"",
+        "options": {
+          "systemMessage": "Actúa como un SECRETARIO DE EDICIÓN (Gatekeeper). Hablas directamente con el usuario final.\n\nTU OBJETIVO:\nGestionar la conversación basándote en si existe o no una publicación activa.\n\nINPUT QUE RECIBIRÁS:\n1. Contexto (Título/Texto del post).\n2. Mensaje del Usuario.\n\nREGLAS DE LÓGICA (Sigue este orden estricto):\n\n1. CASO CRÍTICO: NO HAY PUBLICACIÓN (Contexto = [undefined] o vacío)\n   - Si detectas que el Título o Texto son \"[undefined]\", IGNORA cualquier petición de edición del usuario (aunque te diga \"cambia el texto\" o \"ponlo más alegre\").\n   - Tu ÚNICA respuesta posible es: \"No hay ninguna publicación activa todavía. ¿Sobre qué tema quieres crear el nuevo post?\"\n\n2. CASO NORMAL: SÍ HAY PUBLICACIÓN\n   - Si el usuario pide cambios concretos: Confirma brevemente (\"Entendido, le digo al redactor que lo haga más alegre\").\n   - Si el usuario es vago (\"no me gusta\"): Pregunta qué quiere cambiar (texto, imagen o tema).\n   - Si el usuario saluda: Saluda y pregunta qué cambio necesita.\n\nREGLAS DE FORMATO DE SALIDA:\n- NO devuelvas JSON.\n- NO uses markdown ni etiquetas.\n- Devuelve SOLO el texto de tu respuesta."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        1360,
+        992
+      ],
+      "id": "006565a0-fc21-44d3-8e02-423d06c909e7",
+      "name": "Agente Chat"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1712,
+        992
+      ],
+      "id": "98e8cbdc-0cb3-41a8-aaef-f07154eb6bce",
+      "name": "Chat",
+      "webhookId": "eec9b1ab-8096-4fdf-95e9-f6e5656e6b02",
+      "credentials": {
+        "telegramApi": {
+          "id": "sYXmQach0fDdJf2T",
+          "name": "Guillermo_Personal_LinkedIn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "person": "Kh--3qBVh9",
+        "text": "={{ $json.draft_text }}",
+        "shareMediaCategory": "IMAGE",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        2128,
+        224
+      ],
+      "id": "07c20a54-3ce6-49f1-9169-55a4778f4ead",
+      "name": "Create a post",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "BV5SybAwjgn4Pr5e",
+          "name": "LinkedIn account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "person": "Kh--3qBVh9",
+        "text": "={{ $json.draft_text }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        608
+      ],
+      "id": "4e066926-d3d8-4c33-8188-5e0aec557285",
+      "name": "Create a post1",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "BV5SybAwjgn4Pr5e",
+          "name": "LinkedIn account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Publicación pendiente').item.json.media_url }}",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1920,
+        224
+      ],
+      "id": "309f6acd-c883-4a41-846a-3ff8627e3c7d",
+      "name": "Descargador_Final",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "UymR5RYd7bVXlik6",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "PENDING"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1712,
+        224
+      ],
+      "id": "57303e53-7c96-40e8-a73e-be73cf2fa16f",
+      "name": "Publicación pendiente_Final_con_imagen",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "PENDING"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1712,
+        608
+      ],
+      "id": "24e7d32b-9519-4660-a4b5-390822ed3645",
+      "name": "Publicación pendiente Final_sin_imagen",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "PUBLISH",
+            "id": "={{ $('Publicación pendiente Final_sin_imagen').item.json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "draft_text",
+              "displayName": "draft_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_image_prompt",
+              "displayName": "current_image_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_url",
+              "displayName": "media_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2336,
+        608
+      ],
+      "id": "4092bd96-d520-467d-ba39-5e1655c3fd64",
+      "name": "Actualizador Final_sin_imagen",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E",
+          "mode": "list",
+          "cachedResultName": "Linkedin V1.2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1889392244,
+          "mode": "list",
+          "cachedResultName": "Publicaciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1S4D64gLWg3d9inX5YwGcuXbjhn1PNEV5Nkea_wUgW5E/edit#gid=1889392244"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "PUBLISH",
+            "id": "={{ $('Publicación pendiente_Final_con_imagen').item.json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "draft_text",
+              "displayName": "draft_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_image_prompt",
+              "displayName": "current_image_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_url",
+              "displayName": "media_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2528,
+        224
+      ],
+      "id": "41d88729-52fd-4eb1-87b6-cc38d4eb157d",
+      "name": "Actualizador Final_con_imagen",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "acxQYAb1lEzSDaGv",
+          "name": "Personal_Google"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "*Publicado con éxito!!!*",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2128,
+        608
+      ],
+      "id": "c3d22515-8d39-483d-8428-527385362462",
+      "name": "Resultado Final_sin_imagen",
+      "webhookId": "9a60aff8-3e33-436c-80d7-7b06679d029b",
+      "credentials": {
+        "telegramApi": {
+          "id": "sYXmQach0fDdJf2T",
+          "name": "Guillermo_Personal_LinkedIn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "*Publicado con éxito!!!*",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2336,
+        224
+      ],
+      "id": "9068eb68-25c2-4802-94a0-ac05485607c6",
+      "name": "Resultado Final_con_imagen",
+      "webhookId": "9a60aff8-3e33-436c-80d7-7b06679d029b",
+      "credentials": {
+        "telegramApi": {
+          "id": "sYXmQach0fDdJf2T",
+          "name": "Guillermo_Personal_LinkedIn"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Publicación pendiente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Gestor del Switch",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Gestor del Switch",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Descargador",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Redactor 2.0",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call 'Linkedin V1.2'",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Agente Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Chat",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente Chat",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gestor del Switch": {
+      "main": [
+        [
+          {
+            "node": "Limpiador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publicación pendiente": {
+      "main": [
+        [
+          {
+            "node": "Gestor del Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiador": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargador": {
+      "main": [
+        [
+          {
+            "node": "Editor de imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Editor de imagen": {
+      "main": [
+        [
+          {
+            "node": "Actualizador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizador": {
+      "main": [
+        [
+          {
+            "node": "Resultado Imagen_final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redactor 2.0": {
+      "main": [
+        [
+          {
+            "node": "Actualizador Texto_final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizador Texto_final": {
+      "main": [
+        [
+          {
+            "node": "Resultado Texto_final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente Chat": {
+      "main": [
+        [
+          {
+            "node": "Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Publicación pendiente_Final_con_imagen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Publicación pendiente Final_sin_imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a post": {
+      "main": [
+        [
+          {
+            "node": "Resultado Final_con_imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a post1": {
+      "main": [
+        [
+          {
+            "node": "Resultado Final_sin_imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargador_Final": {
+      "main": [
+        [
+          {
+            "node": "Create a post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publicación pendiente_Final_con_imagen": {
+      "main": [
+        [
+          {
+            "node": "Descargador_Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publicación pendiente Final_sin_imagen": {
+      "main": [
+        [
+          {
+            "node": "Create a post1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resultado Final_sin_imagen": {
+      "main": [
+        [
+          {
+            "node": "Actualizador Final_sin_imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resultado Final_con_imagen": {
+      "main": [
+        [
+          {
+            "node": "Actualizador Final_con_imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "timeSavedMode": "fixed",
+    "timezone": "Europe/Madrid",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "eb635143-33b8-41f0-b8b9-94c1b9dd1f57",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e14d10b7ca64b2f8fb03497664af554029db34b73a341d4b29cefba3eb8cbb37"
+  },
+  "id": "4sT7dLFlTZBXchnN",
+  "tags": []
+}
